@@ -48,3 +48,4 @@ The following policies are meant to guide collaborators in their activities, est
 
 ## Contributors
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=MrToino&show_icons=true&theme=react)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=luisferreira32&show_icons=true&theme=react)
