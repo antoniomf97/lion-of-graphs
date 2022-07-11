@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 
-from http.server import SimpleHTTPRequestHandler
-from socketserver import TCPServer
+from http.server import SimpleHTTPRequestHandler, HTTPServer
+
+hostName = "localhost"
+serverPort = 8080
+
 
 class FitterHandler(SimpleHTTPRequestHandler):
     def _set_headers(self, content_length):
         self.send_header('Content-type', 'text/html')
         self.send_header("Content-Length", content_length)
         self.end_headers()
-
         
     def do_GET(self):
-        self.send_response(400)
+        self.send_response(200)
         self._set_headers("0")
 
     def do_POST(self):
@@ -28,6 +30,14 @@ class FitterHandler(SimpleHTTPRequestHandler):
     do_DELETE = do_GET
 
 
-httpd = TCPServer(('', 8000), FitterHandler)
+if __name__ == "__main__":
+    webServer = HTTPServer((hostName, serverPort), FitterHandler)
+    print("Server started http://%s:%s" % (hostName, serverPort))
 
-httpd.serve_forever()
+    try:
+        webServer.serve_forever()
+    except KeyboardInterrupt:
+        pass
+
+    webServer.server_close()
+    print("Server stopped.")
