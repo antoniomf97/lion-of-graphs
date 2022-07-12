@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from service import service
+import json
+from preprocessor import plotter
 
 hostName = "localhost"
 serverPort = 8080
@@ -20,9 +21,8 @@ class MyServer(BaseHTTPRequestHandler):
         length = int(content_length) if content_length else 0
         request = self.rfile.read(length)
 
-        response = service(request)
-
-        # error handler
+        parsed = json.loads(request)
+        response = plotter(parsed["filename"]).to_json().encode()
 
         self.send_response(200)
         self._set_headers(str(len(response)))
