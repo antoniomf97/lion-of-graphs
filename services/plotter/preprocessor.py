@@ -11,6 +11,4 @@ input:
 """
 
 def plotter(b64_data):
-    response = base64_to_dataframe(b64_data)
-    plot(response)
-    return response
+    return base64_to_dataframe(b64_data)
