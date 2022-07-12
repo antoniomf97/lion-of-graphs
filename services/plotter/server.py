@@ -22,8 +22,6 @@ class MyServer(BaseHTTPRequestHandler):
 
         response = service(request)
 
-        # error handler
-
         self.send_response(200)
         self._set_headers(str(len(response)))
         self.wfile.write(response)
