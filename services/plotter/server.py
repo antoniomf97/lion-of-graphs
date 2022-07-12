@@ -1,4 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
+import json
+from preprocessor import plotter
 
 hostName = "localhost"
 serverPort = 8080
@@ -16,13 +18,15 @@ class MyServer(BaseHTTPRequestHandler):
 
     def do_POST(self):
         content_length = self.headers['content-length']
-        length = int(content_length[0]) if content_length else 0
+        length = int(content_length) if content_length else 0
+        request = self.rfile.read(length)
 
-        data_string = self.rfile.read(length)
+        parsed = json.loads(request)
+        response = plotter(parsed["filename"]).to_json().encode()
 
         self.send_response(200)
-        self._set_headers(str(len(data_string)))
-        self.wfile.write(data_string)
+        self._set_headers(str(len(response)))
+        self.wfile.write(response)
 
 
 if __name__ == "__main__":
