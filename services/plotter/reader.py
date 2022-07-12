@@ -19,7 +19,7 @@ def base64_to_string(b64_data):
 def string_to_dataframe(string_data):
     """Defines pandas dataframe from decoded data"""
     try:
-        return pd.read_csv(StringIO(string_data), sep=",")
+        return pd.read_csv(StringIO(string_data), sep=",", index_col=0)
     except ValueError:
         print("Unable to parse column: invalid data format")
         exit()
