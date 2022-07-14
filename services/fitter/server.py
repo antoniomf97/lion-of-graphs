@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
-
 from http.server import SimpleHTTPRequestHandler, HTTPServer
+from service import service
 
 hostName = "localhost"
 serverPort = 8080
@@ -18,9 +17,10 @@ class FitterHandler(SimpleHTTPRequestHandler):
 
     def do_POST(self):
         content_length = self.headers['content-length']
-        length = int(content_length[0]) if content_length else 0
-        
-        data_string = self.rfile.read(length)
+        length = int(content_length) if content_length else 0
+        request = self.rfile.read(length)
+
+        response = service(request)
 
         self.send_response(200)
         self._set_headers(str(len(data_string)))
