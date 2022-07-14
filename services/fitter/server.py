@@ -23,8 +23,8 @@ class FitterHandler(SimpleHTTPRequestHandler):
         response = service(request)
 
         self.send_response(200)
-        self._set_headers(str(len(data_string)))
-        self.wfile.write(data_string)
+        self._set_headers(str(len(response)))
+        self.wfile.write(response)
     
     do_PUT = do_POST
     do_DELETE = do_GET
