@@ -1,33 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import GraphPage from './pages/GraphPage';
 import './index.css';
-
-class Graph extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      imglink: 'https://portswigger.net/web-security/images/cross-site-scripting.svg',
-      altmsg: 'Failed to do cross-site scripting'
-    }
-  }
-  render() {
-    return (
-      <div>
-        <div>
-          <img src={this.state.imglink} alt={this.state.altmsg}/>
-        </div>
-        <div>
-          <button onClick={
-            () => this.setState({
-              imglink: 'https://google.com',
-              altmsg: 'and to access google'
-            })
-          }> Replace with google </button>
-        </div>
-      </div>
-    );
-  }
-}
 
 class App extends React.Component {
   render() {
@@ -36,7 +10,7 @@ class App extends React.Component {
         <h1>
           MathPlotBuilder App
         </h1>
-        <Graph />
+        <GraphPage />
       </div>      
     );
   }
