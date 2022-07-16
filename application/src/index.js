@@ -8,7 +8,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>
-          MathPlotBuilder App
+          MatPlotBuilder App
         </h1>
         <GraphPage />
       </div>      

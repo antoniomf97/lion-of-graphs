@@ -14,8 +14,7 @@ export default class GraphPage extends React.Component {
   }
 
   handleOnChange = (e) => {
-    // FIXME not sure if this is really taking a file...
-    this.setState({ file: e.target.file})
+    this.setState({ file: e.target.files[0]})
   }
 
   handleOnSubmit = (e) => {
