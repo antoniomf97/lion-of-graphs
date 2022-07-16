@@ -16,7 +16,7 @@ class FitterHandler(SimpleHTTPRequestHandler):
         self._set_headers("0")
 
     def do_POST(self):
-        content_length = self.headers['content-length']
+        content_length = int(self.headers.get("content-length", "0"))
         length = int(content_length) if content_length else 0
         request = self.rfile.read(length)
 
