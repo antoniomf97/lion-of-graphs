@@ -3,8 +3,7 @@ from validator import *
 
 
 def preprocess_data(b64_data):
-    """Validates input data"""
+    """Preprocesses and validates input data"""
     data = base64_to_dataframe(b64_data)
-    # <-- validator here
     validate_data(data)
     return data
