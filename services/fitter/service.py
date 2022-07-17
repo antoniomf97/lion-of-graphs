@@ -19,10 +19,11 @@ def validate_json(request):
     """Validates request JSON schema"""
     try:
         jsonschema.validate(instance=request, schema=requestSchema)
-    except jsonschema.exceptions.ValidationError:
+        return True
+    except ValidationError as err:
         print("Invalid request JSON schema.")
+        exit()
         return False
-    return True
 
 
 def parse_json(request):
@@ -43,4 +44,4 @@ def service(request):
         fitter(data)
         response = data
 
-    return response.to_json().encode()
+    return data.to_json().encode()
