@@ -34,9 +34,10 @@ def parse_json(request):
 def service(request):
     """Triggers the fitter engine for the given request"""
     response = None
-    parsed = json.loads(request)
+
+    request = parse_json(request)
     if validate_json(request):
-        data = preprocess_data(parsed["ContentB64"])
+        data = preprocess_data(request["ContentB64"])
         response = fitter(data)
 
     return response.to_json().encode()
