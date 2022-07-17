@@ -1,16 +1,10 @@
-from reader import *
-from fitter import fitter
+from reader import base64_to_dataframe
+from validator import *
 
-"""
-input:
-  X,Y
-0 1,2
-1 2,4
-2 3,8
-3 4,16
-"""
 
-def plotter(b64_data):
-    response = base64_to_dataframe(b64_data)
-    fitter(response)
-    return response
+def preprocess_data(b64_data):
+    """Validates input data"""
+    data = base64_to_dataframe(b64_data)
+    # <-- validator here
+    validate_data(data)
+    return data
