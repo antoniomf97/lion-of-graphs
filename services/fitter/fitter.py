@@ -20,6 +20,15 @@ def test_plot(xdata, ydata, parameters):
     """Testing plot"""
     fit1 = parameters[0]
     fit2 = parameters[1]
+<<<<<<< HEAD
+=======
+
+    fit_y = LinearRegression(xdata, fit1, fit2)
+    plt.plot(xdata, ydata, 'o', label='data')
+    plt.plot(xdata, fit_y, '-', label='fit')
+    plt.legend()
+    plt.show()
+>>>>>>> 7b27599 (Refactored fitter engine)
 
     fit_y = LinearRegression(xdata, fit1, fit2)
 
