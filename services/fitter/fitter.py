@@ -22,10 +22,4 @@ def test_plot(xdata, ydata, parameters):
     fit2 = parameters[1]
 
     fit_y = LinearRegression(xdata, fit1, fit2)
-    plt.plot(xdata, ydata, 'o', label='data')
-    plt.plot(xdata, fit_y, '-', label='fit')
-    plt.legend()
-    plt.show()
-
-
 
