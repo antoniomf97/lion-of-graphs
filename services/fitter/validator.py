@@ -5,9 +5,9 @@ def check_duplicates(data):
     return len(data) != len(set(data))
 
 
-def validate_data(data, key="X"):
+def validate_data(data):
     """Validates input data for general plot"""
-    if check_duplicates(data[key]):
+    if check_duplicates(data.index.values):
         return True
     else:
         print("Data is invalid for plotting: duplicated abscissa")

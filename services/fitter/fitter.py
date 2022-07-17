@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
 
-def fitter(request, keys=('X', 'Y')):
+def fitter(request, keys='Y'):
     """Fitter engine"""
-    xdata, ydata = np.asarray(request[keys[0]]), np.asarray(request[keys[1]])
+    xdata, ydata = np.asarray(request.index.values), np.asarray(request[keys[0]])
     parameters, covariance = curve_fit(LinearRegression, xdata, ydata)
 
     test_plot(xdata, ydata, parameters)
