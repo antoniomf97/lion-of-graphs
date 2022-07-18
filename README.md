@@ -1,4 +1,10 @@
 # MPB
+
+![GitHub top language](https://img.shields.io/github/languages/top/MrToino/EGT-Sim?logo=Python)
+![GitHub repo file count](https://img.shields.io/github/directory-file-count/MrToino/EGT-Sim)
+![GitHub last commit](https://img.shields.io/github/last-commit/MrToino/EGT-Sim)
+![GitHub](https://img.shields.io/github/license/MrToino/EGT-Sim)
+
 (under construction)
 
 ## Project Descriptions
