@@ -44,4 +44,4 @@ def service(request):
         fitter(data)
         response = data
 
-    return data.to_json().encode()
+    return response.to_json().encode()
