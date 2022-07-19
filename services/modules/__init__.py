@@ -1,1 +1,1 @@
-from services.modules.log_module import config_existing_logger, logger
+from services.modules.log_module import config_logger, logger
