@@ -1,6 +1,6 @@
 from services.modules import config_logger, logger
 from services.modules import validate_request
-from preprocessor import preprocess_data
+from services.modules import preprocess_data
 from fitter import fitter
 
 
@@ -14,8 +14,8 @@ def service(request):
     request = validate_request(request)
 
     logger.debug("Preprocessing data")
-    response = preprocess_data(request["ContentB64"])
+    data = preprocess_data(request["ContentB64"])
 
-    fitter(response)
+    fitter(data)
 
-    return response.to_json().encode()
+    return data.to_json().encode()
