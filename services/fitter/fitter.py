@@ -7,9 +7,12 @@ def fitter(data):
     """Fitter engine"""
     xdata, ydata = np.asarray(data.index.values), np.asarray(data[data.keys()[0]])
 
-    parameters, covariance = curve_fit(LinearRegression, xdata, ydata)
+    parameters_l, covariance_l = curve_fit(LinearRegression, xdata, ydata)
+    parameters_q, covariance_q = curve_fit(QuadraticRegression, xdata, ydata)
 
-    test_plot(xdata, ydata, parameters)
+    test_plot_linear(xdata, ydata, parameters_l)
+    test_plot_quadratic(xdata, ydata, parameters_q)
+    plt.show()
 
 
 def LinearRegression(x, m, c):
@@ -17,13 +20,22 @@ def LinearRegression(x, m, c):
     return m * x + c
 
 
-def test_plot(xdata, ydata, parameters):
-    """Testing plot"""
-    fit1 = parameters[0]
-    fit2 = parameters[1]
+def QuadraticRegression(x, a, b, c):
+    """Computes the linear regression at point x, for given parameteres"""
+    return a * x * x + b * x + c
 
-    fit_y = LinearRegression(xdata, fit1, fit2)
+
+def test_plot_linear(xdata, ydata, parameters):
+    """Testing plot"""
+    fit_y = LinearRegression(xdata, parameters[0], parameters[1])
     plt.plot(xdata, ydata, 'o', label='data')
     plt.plot(xdata, fit_y, '-', label='fit')
     plt.legend()
-    plt.show()
+
+
+def test_plot_quadratic(xdata, ydata, parameters):
+    """Testing plot"""
+    fit_y = QuadraticRegression(xdata, parameters[0], parameters[1], parameters[2])
+    plt.plot(xdata, ydata, 'o', label='data')
+    plt.plot(xdata, fit_y, '-', label='fit')
+    plt.legend()
