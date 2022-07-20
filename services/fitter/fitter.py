@@ -27,15 +27,19 @@ def QuadraticRegression(x, a, b, c):
 
 def test_plot_linear(xdata, ydata, parameters):
     """Testing plot"""
+    x = np.arange(0, max(xdata), (max(xdata) - 1) / 100)
+
     fit_y = LinearRegression(xdata, parameters[0], parameters[1])
     plt.plot(xdata, ydata, 'o', label='data')
-    plt.plot(xdata, fit_y, '-', label='fit')
+    plt.plot(x, fit_y, '-', label='fit')
     plt.legend()
 
 
 def test_plot_quadratic(xdata, ydata, parameters):
     """Testing plot"""
-    fit_y = QuadraticRegression(xdata, parameters[0], parameters[1], parameters[2])
+    x = np.arange(0, max(xdata), (max(xdata)-1)/100)
+
+    fit_y = QuadraticRegression(x, parameters[0], parameters[1], parameters[2])
     plt.plot(xdata, ydata, 'o', label='data')
-    plt.plot(xdata, fit_y, '-', label='fit')
+    plt.plot(x, fit_y, '-', label='fit')
     plt.legend()
