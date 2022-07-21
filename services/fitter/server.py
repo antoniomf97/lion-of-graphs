@@ -1,5 +1,5 @@
 from http.server import SimpleHTTPRequestHandler, HTTPServer
-from services.modules import config_logger, logger
+from ext_modules import config_logger, logger
 from service import service
 
 hostName = "localhost"

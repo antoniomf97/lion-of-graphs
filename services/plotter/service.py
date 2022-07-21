@@ -1,6 +1,6 @@
 import json
 from preprocessor import plotter
-from services.modules import config_logger, logger
+from ext_modules import config_logger, logger
 
 
 def validate_json(request):
