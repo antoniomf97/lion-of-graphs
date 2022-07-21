@@ -1,8 +1,14 @@
 from http.server import SimpleHTTPRequestHandler, HTTPServer
+from services.modules import config_logger, logger
 from service import service
 
 hostName = "localhost"
 serverPort = 8080
+
+
+def configure_logger(filename="log.log", level=10):
+    config_logger(filename=filename)
+    logger.debug("Initialized logging process at {} with level {}.".format(filename, level))
 
 
 class FitterHandler(SimpleHTTPRequestHandler):
@@ -16,6 +22,8 @@ class FitterHandler(SimpleHTTPRequestHandler):
         self._set_headers("0")
 
     def do_POST(self):
+        configure_logger()
+
         content_length = int(self.headers.get("content-length", "0"))
         length = int(content_length) if content_length else 0
         request = self.rfile.read(length)
