@@ -1,5 +1,5 @@
-from services.modules.reader import base64_to_dataframe
-from services.modules.validator import validate_data
+from ext_modules.reader import base64_to_dataframe
+from ext_modules.validator import validate_data
 
 
 def preprocess_data(b64_data):
