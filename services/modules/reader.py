@@ -28,3 +28,4 @@ def string_to_dataframe(string_data):
 def base64_to_dataframe(b64_data):
     """Converts base64 data to pandas dataframe"""
     return string_to_dataframe(base64_to_string(b64_data))
+
