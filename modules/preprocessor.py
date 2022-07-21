@@ -1,5 +1,5 @@
-from services.modules.reader import base64_to_dataframe
-from services.modules.validator import validate_data
+from modules.reader import base64_to_dataframe
+from modules.validator import validate_data
 
 
 def preprocess_data(b64_data):

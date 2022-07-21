@@ -1,4 +1,3 @@
-import numpy as np
 
 
 def check_numeric_values(data):

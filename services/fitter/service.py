@@ -1,6 +1,6 @@
-from services.modules import logger
-from services.modules import validate_request
-from services.modules import preprocess_data
+from modules import logger
+from modules import validate_request
+from modules import preprocess_data
 from fitter import fitter
 
 

@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from services.modules import logger
+from modules import logger
 
 
 def plot(df):

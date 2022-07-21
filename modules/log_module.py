@@ -3,7 +3,7 @@ import logging as log
 import logging.config
 
 
-log_path = "..\\logs\\"
+log_path = "../services/logs\\"
 logger = logging.getLogger()
 
 
