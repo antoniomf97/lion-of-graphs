@@ -8,9 +8,7 @@ def validate_json(request):
 
 def service(request):
     validate_json(request)
-
     parsed = json.loads(request)
-
     response = plotter(parsed["filename"]).to_json().encode()
 
     return response
