@@ -8,7 +8,7 @@ serverPort = 8080
 
 def configure_logger(filename="log.log", level=10):
     config_logger(filename=filename)
-    logger.debug("Initialized logging process at {} with level {}.".format(filename, level))
+    logger.debug("Initialized logger at {} with level {}.".format(filename, level))
 
 
 class FitterHandler(SimpleHTTPRequestHandler):
@@ -22,8 +22,6 @@ class FitterHandler(SimpleHTTPRequestHandler):
         self._set_headers("0")
 
     def do_POST(self):
-        configure_logger()
-
         content_length = int(self.headers.get("content-length", "0"))
         length = int(content_length) if content_length else 0
         request = self.rfile.read(length)
@@ -40,7 +38,9 @@ class FitterHandler(SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     webServer = HTTPServer((hostName, serverPort), FitterHandler)
-    print("Server started http://%s:%s" % (hostName, serverPort))
+    print("Server started at http://{}:{}".format(hostName, serverPort))
+    configure_logger()
+    logger.debug("Server started at http://{}:{}".format(hostName, serverPort))
 
     try:
         webServer.serve_forever()
