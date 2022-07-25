@@ -10,9 +10,11 @@ def service(request):
     logger.debug("Validating request in terms of format and JSON schema.")
     request = validate_request(request)
 
-    logger.debug("Preprocessing data")
+    logger.debug("Preprocessing input data.")
     data = preprocess_data(request["ContentB64"])
 
+    logger.debug("Calling fitter engine for given data.")
     fitter(data)
 
+    logger.debug("Returning encoded json data.")
     return data.to_json().encode()
