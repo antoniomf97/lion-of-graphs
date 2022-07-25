@@ -4,7 +4,7 @@ from service import service
 
 
 hostName = "localhost"
-serverPort = 8081
+serverPort = 8080
 
 
 class PlotterHandler(BaseHTTPRequestHandler):
@@ -34,7 +34,7 @@ class PlotterHandler(BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     filename, level = "plotter.log", 10
-    config_logger(filename=filename)
+    config_logger(filename=filename, clean_logs=False)
     logger.debug("Initialized logger for plotter service at {} with level {}.".format(filename, level))
 
     webServer = HTTPServer((hostName, serverPort), PlotterHandler)
@@ -48,3 +48,5 @@ if __name__ == "__main__":
 
     webServer.server_close()
     print("Server stopped.")
+    logger.debug("Server stopped.")
+

@@ -1,3 +1,4 @@
+from ext_modules import logger
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
@@ -7,11 +8,19 @@ def fitter(data):
     """Fitter engine"""
     xdata, ydata = np.asarray(data.index.values), np.asarray(data[data.keys()[0]])
 
+    logger.debug("Computing linear regression for given data.")
     parameters_l, covariance_l = curve_fit(LinearRegression, xdata, ydata)
+
+    logger.debug("Computing quadratic regression for given data.")
     parameters_q, covariance_q = curve_fit(QuadraticRegression, xdata, ydata)
 
+    logger.debug("Building plot for linear regression.")
     test_plot_linear(xdata, ydata, parameters_l)
+
+    logger.debug("Building plot for quadratic regression.")
     test_plot_quadratic(xdata, ydata, parameters_q)
+
+    logger.debug("Show resulting plot.")
     plt.show()
 
 

@@ -1,9 +1,11 @@
-import matplotlib.pyplot as plt
 from ext_modules import logger
+import matplotlib.pyplot as plt
 
 
-def plotter(df):
-    logger.debug('outras cenas')
+def plotter(data):
+    logger.debug("Building plot for given data.")
     plt.figure()
-    plt.plot(df)
+    plt.plot(data)
 
+    logger.debug("Show resulting plot.")
+    plt.show()
