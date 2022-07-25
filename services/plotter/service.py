@@ -1,19 +1,22 @@
-import json
-from preprocessor import plotter
-from ext_modules import config_logger, logger
-
-
-def validate_json(request):
-    pass
+from ext_modules import logger
+from ext_modules import validate_request
+from ext_modules import preprocess_data
+from plotter import plotter
 
 
 def service(request):
-    config_logger(filename='log.log', disable_existing_loggers=True)
+    """Triggers the plotter engine for the given request"""
 
-    validate_json(request)
-    parsed = json.loads(request)
-    response = plotter(parsed["ContentB64"]).to_json().encode()
-    logger.debug('cenas')
+    logger.debug("Validating request in terms of format and JSON schema.")
+    request = validate_request(request)
 
-    return response
+    logger.debug("Preprocessing input data.")
+    data = preprocess_data(request["ContentB64"])
+
+    logger.debug("Calling plotter engine for given data.")
+    plotter(data)
+
+    logger.debug("Returning encoded json data.")
+    return data.to_json().encode()
+
 

@@ -2,13 +2,9 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 from ext_modules import config_logger, logger
 from service import service
 
+
 hostName = "localhost"
 serverPort = 8080
-
-
-def configure_logger(filename="log.log", level=10):
-    config_logger(filename=filename)
-    logger.debug("Initialized logger at {} with level {}.".format(filename, level))
 
 
 class FitterHandler(SimpleHTTPRequestHandler):
@@ -37,9 +33,12 @@ class FitterHandler(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    filename, level = "plotter.log", 10
+    config_logger(filename=filename)
+    logger.debug("Initialized logger for plotter service at {} with level {}.".format(filename, level))
+
     webServer = HTTPServer((hostName, serverPort), FitterHandler)
     print("Server started at http://{}:{}".format(hostName, serverPort))
-    configure_logger()
     logger.debug("Server started at http://{}:{}".format(hostName, serverPort))
 
     try:

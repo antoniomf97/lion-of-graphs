@@ -1,11 +1,13 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from ext_modules import config_logger, logger
 from service import service
+
 
 hostName = "localhost"
 serverPort = 8081
 
 
-class MyServer(BaseHTTPRequestHandler):
+class PlotterHandler(BaseHTTPRequestHandler):
     def _set_headers(self, content_length):
         self.send_header('Content-type', 'text/html')
         self.send_header("Content-Length", content_length)
@@ -22,16 +24,22 @@ class MyServer(BaseHTTPRequestHandler):
 
         response = service(request)
 
-        # error handler
-
         self.send_response(200)
         self._set_headers(str(len(response)))
         self.wfile.write(response)
 
+    do_PUT = do_POST
+    do_DELETE = do_GET
+
 
 if __name__ == "__main__":
-    webServer = HTTPServer((hostName, serverPort), MyServer)
-    print("Server started http://%s:%s" % (hostName, serverPort))
+    filename, level = "plotter.log", 10
+    config_logger(filename=filename)
+    logger.debug("Initialized logger for plotter service at {} with level {}.".format(filename, level))
+
+    webServer = HTTPServer((hostName, serverPort), PlotterHandler)
+    print("Server started at http://{}:{}".format(hostName, serverPort))
+    logger.debug("Server started at http://{}:{}".format(hostName, serverPort))
 
     try:
         webServer.serve_forever()
