@@ -4,7 +4,7 @@ from service import service
 
 
 hostName = "localhost"
-serverPort = 8080
+serverPort = 8081
 
 
 class FitterHandler(SimpleHTTPRequestHandler):
@@ -33,7 +33,7 @@ class FitterHandler(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    filename, level = "plotter.log", 10
+    filename, level = "fitter.log", 10
     config_logger(filename=filename)
     logger.debug("Initialized logger for plotter service at {} with level {}.".format(filename, level))
 
@@ -48,3 +48,4 @@ if __name__ == "__main__":
 
     webServer.server_close()
     print("Server stopped.")
+    logger.debug("Server stopped.")
