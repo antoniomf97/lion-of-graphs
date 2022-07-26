@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
+from services.plotter.plotter import plotter_for_fitter
+
 
 def fitter(data):
     """Fitter engine"""
@@ -15,10 +17,10 @@ def fitter(data):
     parameters_q, covariance_q = curve_fit(QuadraticRegression, xdata, ydata)
 
     logger.debug("Building plot for linear regression.")
-    test_plot_linear(xdata, ydata, parameters_l)
+    plotter_for_fitter(xdata, ydata, lambda x: LinearRegression(x, *parameters_l))
 
     logger.debug("Building plot for quadratic regression.")
-    test_plot_quadratic(xdata, ydata, parameters_q)
+    plotter_for_fitter(xdata, ydata, lambda x: QuadraticRegression(x, *parameters_q))
 
     logger.debug("Show resulting plot.")
     plt.show()

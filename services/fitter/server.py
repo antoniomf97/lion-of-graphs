@@ -18,14 +18,21 @@ class FitterHandler(SimpleHTTPRequestHandler):
         self._set_headers("0")
 
     def do_POST(self):
+        logger.debug("Invoking POST operator for fitter engine.")
         content_length = int(self.headers.get("content-length", "0"))
         length = int(content_length) if content_length else 0
+
+        logger.debug("Reading input request.")
         request = self.rfile.read(length)
 
+        logger.debug("Processing fitter engine for given request.")
         response = service(request)
 
+        logger.debug("Sending response: 200 - OK.")
         self.send_response(200)
         self._set_headers(str(len(response)))
+
+        logger.debug("Retrieving response from engine.")
         self.wfile.write(response)
     
     do_PUT = do_POST
