@@ -1,5 +1,7 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
-from ext_modules import config_logger, logger
+from http.server import SimpleHTTPRequestHandler
+from http.server import HTTPServer
+from ext_modules import config_logger
+from ext_modules import logger
 from service import service
 
 
@@ -7,7 +9,7 @@ hostName = "localhost"
 serverPort = 8080
 
 
-class PlotterHandler(BaseHTTPRequestHandler):
+class PlotterHandler(SimpleHTTPRequestHandler):
     def _set_headers(self, content_length):
         self.send_header('Content-type', 'text/html')
         self.send_header("Content-Length", content_length)
@@ -38,8 +40,8 @@ if __name__ == "__main__":
     logger.debug("Initialized logger for plotter service at {} with level {}.".format(filename, level))
 
     webServer = HTTPServer((hostName, serverPort), PlotterHandler)
-    print("Server started at http://{}:{}".format(hostName, serverPort))
-    logger.debug("Server started at http://{}:{}".format(hostName, serverPort))
+    print("Plotter server started at http://{}:{}".format(hostName, serverPort))
+    logger.debug("Plotter server started at http://{}:{}".format(hostName, serverPort))
 
     try:
         webServer.serve_forever()
@@ -47,6 +49,6 @@ if __name__ == "__main__":
         pass
 
     webServer.server_close()
-    print("Server stopped.")
-    logger.debug("Server stopped.")
+    print("Plotter server stopped.")
+    logger.debug("Plotter server stopped.")
 

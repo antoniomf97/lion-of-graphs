@@ -1,5 +1,7 @@
-from http.server import SimpleHTTPRequestHandler, HTTPServer
-from ext_modules import config_logger, logger
+from http.server import SimpleHTTPRequestHandler
+from http.server import HTTPServer
+from ext_modules import config_logger
+from ext_modules import logger
 from service import service
 
 
@@ -45,8 +47,8 @@ if __name__ == "__main__":
     logger.debug("Initialized logger for plotter service at {} with level {}.".format(filename, level))
 
     webServer = HTTPServer((hostName, serverPort), FitterHandler)
-    print("Server started at http://{}:{}".format(hostName, serverPort))
-    logger.debug("Server started at http://{}:{}".format(hostName, serverPort))
+    print("Fitter server started at http://{}:{}".format(hostName, serverPort))
+    logger.debug("Fitter server started at http://{}:{}".format(hostName, serverPort))
 
     try:
         webServer.serve_forever()
@@ -54,5 +56,5 @@ if __name__ == "__main__":
         pass
 
     webServer.server_close()
-    print("Server stopped.")
-    logger.debug("Server stopped.")
+    print("Fitter server stopped.")
+    logger.debug("Fitter server stopped.")
