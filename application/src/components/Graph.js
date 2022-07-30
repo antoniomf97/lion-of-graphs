@@ -1,6 +1,7 @@
 import React from 'react';
 import './Graph.css';
 
+// https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
 export default class Graph extends React.Component {
   render() {
     return (

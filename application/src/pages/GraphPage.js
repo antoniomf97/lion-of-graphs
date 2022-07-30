@@ -11,24 +11,30 @@ export default class GraphPage extends React.Component {
       points: [{x: 10, y: 10},{x: 50, y: 100},{x: 200, y: 50}, {x: 300, y: 200}, {x: 350, y: 200}, {x: 480, y: 250}],
       file: "",
     }
+    
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
 
-  handleOnChange = (e) => {
+  async handleOnChange(e) {
     this.setState({ file: e.target.files[0]})
   }
 
-  handleOnSubmit = (e) => {
+  async handleOnSubmit(e) {
     e.preventDefault();
     if (this.state.file) {
-        const fileReader = new FileReader()
-        fileReader.onload = function (event) {
-            const csvOutput = event.target.result
-            // TODO some treatment of the actual input to send to backend
-            console.log(csvOutput)
-        };
-
-        fileReader.readAsText(this.state.file)
-        // TODO await for backend response and pass it to points
+        const formData = new FormData();
+        formData.append('file', this.state.file)
+        const response = await fetch('http://localhost:8080', { // FIXME: don't have hardcoded URLs
+          method: "POST",
+          headers: {
+            'Content-type': 'multipart/form-data',
+            'Access-Control-Allow-Origin': '*' // FIXME: this is to go around localhost issues
+          },
+          body: formData,
+        })
+        const data = await response.json();
+        this.setState({ points: data})
     }
   }
 
