@@ -1,8 +1,6 @@
 import http.client
 import json
 import base64
-from io import StringIO
-import csv
 
 
 plotter_url = "localhost:8080"
@@ -23,7 +21,7 @@ def build_request(filename: str = "test.csv"):
 
 
 if __name__ == '__main__':
-    connection = http.client.HTTPConnection(fitter_url)
+    connection = http.client.HTTPConnection(plotter_url)
     connection.request("POST", "/plotter", *build_request())
     response = connection.getresponse()
 
