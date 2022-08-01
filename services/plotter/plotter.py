@@ -1,4 +1,4 @@
-from ext_modules import logger
+from intmodules import logger
 import matplotlib.pyplot as plt
 import numpy as np
 

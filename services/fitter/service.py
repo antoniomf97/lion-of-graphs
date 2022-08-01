@@ -1,6 +1,6 @@
-from ext_modules import logger
-from ext_modules import validate_request
-from ext_modules import preprocess_data
+from intmodules import logger
+from intmodules import validate_request
+from intmodules import preprocess_data
 from fitter import fitter
 
 

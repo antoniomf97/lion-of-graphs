@@ -1,7 +1,7 @@
 from http.server import SimpleHTTPRequestHandler
 from http.server import HTTPServer
-from ext_modules import config_logger
-from ext_modules import logger
+from intmodules import config_logger
+from intmodules import logger
 from service import service
 
 
