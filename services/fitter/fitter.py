@@ -1,14 +1,29 @@
+from intmodules import logger
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
+from services.plotter.plotter import plotter_for_fitter
 
-def fitter(request, keys='Y'):
+
+def fitter(data):
     """Fitter engine"""
-    xdata, ydata = np.asarray(request.index.values), np.asarray(request[keys[0]])
-    parameters, covariance = curve_fit(LinearRegression, xdata, ydata)
+    xdata, ydata = np.asarray(data.index.values), np.asarray(data[data.keys()[0]])
 
-    test_plot(xdata, ydata, parameters)
+    logger.debug("Computing linear regression for given data.")
+    parameters_l, covariance_l = curve_fit(LinearRegression, xdata, ydata)
+
+    logger.debug("Computing quadratic regression for given data.")
+    parameters_q, covariance_q = curve_fit(QuadraticRegression, xdata, ydata)
+
+    logger.debug("Building plot for linear regression.")
+    plotter_for_fitter(xdata, ydata, lambda x: LinearRegression(x, *parameters_l))
+
+    logger.debug("Building plot for quadratic regression.")
+    plotter_for_fitter(xdata, ydata, lambda x: QuadraticRegression(x, *parameters_q))
+
+    logger.debug("Show resulting plot.")
+    plt.show()
 
 
 def LinearRegression(x, m, c):
@@ -16,15 +31,28 @@ def LinearRegression(x, m, c):
     return m * x + c
 
 
-def test_plot(xdata, ydata, parameters):
+def QuadraticRegression(x, a, b, c):
+    """Computes the linear regression at point x, for given parameteres"""
+    return a * x * x + b * x + c
+
+
+def test_plot_linear(xdata, ydata, parameters):
     """Testing plot"""
-    fit1 = parameters[0]
-    fit2 = parameters[1]
+    increment = (max(xdata)-min(xdata))/100
+    x = np.arange(min(xdata), max(xdata)+increment, increment)
 
-    fit_y = LinearRegression(xdata, fit1, fit2)
+    fit_y = LinearRegression(x, parameters[0], parameters[1])
     plt.plot(xdata, ydata, 'o', label='data')
-    plt.plot(xdata, fit_y, '-', label='fit')
+    plt.plot(x, fit_y, '-', label='fit')
     plt.legend()
-    plt.show()
 
 
+def test_plot_quadratic(xdata, ydata, parameters):
+    """Testing plot"""
+    increment = (max(xdata) - min(xdata)) / 100
+    x = np.arange(min(xdata), max(xdata) + increment, increment)
+
+    fit_y = QuadraticRegression(x, parameters[0], parameters[1], parameters[2])
+    plt.plot(xdata, ydata, 'o', label='data')
+    plt.plot(x, fit_y, '-', label='fit')
+    plt.legend()

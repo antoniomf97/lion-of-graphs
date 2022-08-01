@@ -9,10 +9,10 @@ def base64_to_string(b64_data):
     try:
         return base64.b64decode(b64_data).decode('utf-8')
     except binascii.Error:
-        print("Invalid base64 encoding")
+        print("Invalid base64 encoding.")
         exit()
     except UnicodeDecodeError:
-        print("Invalid utf-8 encoding")
+        print("Invalid character utf-8 encoding.")
         exit()
 
 
@@ -21,10 +21,11 @@ def string_to_dataframe(string_data):
     try:
         return pd.read_csv(StringIO(string_data), sep=",", index_col=0)
     except ValueError:
-        print("Unable to parse column: invalid data format")
+        print("Unable to read data as csv: invalid data format.")
         exit()
 
 
 def base64_to_dataframe(b64_data):
     """Converts base64 data to pandas dataframe"""
     return string_to_dataframe(base64_to_string(b64_data))
+
