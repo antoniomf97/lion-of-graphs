@@ -9,10 +9,7 @@ logger = logging.getLogger()
 
 def config_existing_logger(disable):
     """Disable all existing loggers"""
-    logging.config.dictConfig({
-        'version': 1,
-        'disable_existing_loggers': disable,
-    })
+    logging.config.dictConfig({'version': 1, 'disable_existing_loggers': disable, })
 
 
 def clean_all_logs():
