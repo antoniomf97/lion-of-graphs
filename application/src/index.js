@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import GraphPage from './pages/GraphPage';
+import PlotPage from './pages/PlotPage';
 import './index.css';
 
 class App extends React.Component {
@@ -10,7 +10,7 @@ class App extends React.Component {
         <h1>
           MatPlotBuilder App
         </h1>
-        <GraphPage />
+        <PlotPage />
       </div>      
     );
   }
