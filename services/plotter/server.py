@@ -1,8 +1,5 @@
-from http.server import SimpleHTTPRequestHandler
 from http.server import HTTPServer
-from intmodules import config_logger
-from intmodules import logger
-from intmodules import MpbHandler
+from intmodules import config_logger, logger, MPBRequestHandler
 from service import service
 
 
@@ -10,8 +7,7 @@ hostName = "localhost"
 serverPort = 8080
 
 
-class PlotterHandler(MpbHandler):
-
+class PlotterHandler(MPBRequestHandler):
     def do_POST(self):
         content_length = int(self.headers.get("content-length", "0"))
         length = int(content_length) if content_length else 0
@@ -24,6 +20,7 @@ class PlotterHandler(MpbHandler):
         self.send_header('Content-Length', str(len(response)))
         self.end_headers()
         self.wfile.write(response)
+
 
 if __name__ == "__main__":
     filename, level = "plotter.log", 10
