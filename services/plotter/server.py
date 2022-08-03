@@ -2,6 +2,7 @@ from http.server import SimpleHTTPRequestHandler
 from http.server import HTTPServer
 from intmodules import config_logger
 from intmodules import logger
+from intmodules import MpbHandler
 from service import service
 
 
@@ -9,15 +10,7 @@ hostName = "localhost"
 serverPort = 8080
 
 
-class PlotterHandler(SimpleHTTPRequestHandler):
-    def _set_headers(self, content_length):
-        self.send_header('Content-type', 'text/html')
-        self.send_header("Content-Length", content_length)
-        self.end_headers()
-
-    def do_GET(self):
-        self.send_response(200)
-        self._set_headers("0")
+class PlotterHandler(MpbHandler):
 
     def do_POST(self):
         content_length = int(self.headers.get("content-length", "0"))
@@ -27,12 +20,10 @@ class PlotterHandler(SimpleHTTPRequestHandler):
         response = service(request)
 
         self.send_response(200)
-        self._set_headers(str(len(response)))
+        self.send_header('Content-type', 'application/json')
+        self.send_header('Content-Length', str(len(response)))
+        self.end_headers()
         self.wfile.write(response)
-
-    do_PUT = do_POST
-    do_DELETE = do_GET
-
 
 if __name__ == "__main__":
     filename, level = "plotter.log", 10
