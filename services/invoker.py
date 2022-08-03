@@ -21,7 +21,7 @@ def build_request(filename: str = "test.csv"):
 
 
 if __name__ == '__main__':
-    connection = http.client.HTTPConnection(plotter_url)
+    connection = http.client.HTTPConnection(fitter_url)
     connection.request("POST", "/plotter", *build_request())
     response = connection.getresponse()
 

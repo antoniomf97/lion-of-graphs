@@ -3,16 +3,13 @@ import logging as log
 import logging.config
 
 
-log_path = "..\\services\\logs\\"
+log_path = "..\\logs\\"
 logger = logging.getLogger()
 
 
 def config_existing_logger(disable):
     """Disable all existing loggers"""
-    logging.config.dictConfig({
-        'version': 1,
-        'disable_existing_loggers': disable,
-    })
+    logging.config.dictConfig({'version': 1, 'disable_existing_loggers': disable, })
 
 
 def clean_all_logs():
