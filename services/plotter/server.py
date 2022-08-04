@@ -13,13 +13,16 @@ class PlotterHandler(MPBRequestHandler):
         length = int(content_length) if content_length else 0
         request = self.rfile.read(length)
 
-        response = service(request)
-
-        self.send_response(200)
-        self.send_header('Content-type', 'application/json')
-        self.send_header('Content-Length', str(len(response)))
-        self.end_headers()
-        self.wfile.write(response)
+        try:
+            response = service(request)
+        except ValueError:
+            self._return_400()
+        else:
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Content-Length', str(len(response)))
+            self.end_headers()
+            self.wfile.write(response)
 
 
 if __name__ == "__main__":

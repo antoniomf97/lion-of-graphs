@@ -13,10 +13,10 @@ class MPBRequestHandler(SimpleHTTPRequestHandler):
         self.send_response(201)
         self._set_headers()
 
-    def _return_400(self, message="Bad request"):
+    def _return_400(self, message: str = "Bad request"):
         self.send_response(400)
         self._set_headers(len(message))
-        self.wfile.write(bytes(message))
+        self.wfile.write(message.encode())
 
     def _return_405(self, message="Method is not allowed in this service"):
         self.send_response(405)
