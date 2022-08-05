@@ -10,10 +10,10 @@ def base64_to_string(b64_data):
         return base64.b64decode(b64_data).decode('utf-8')
     except binascii.Error:
         print("Invalid base64 encoding.")
-        exit()
+        raise
     except UnicodeDecodeError:
         print("Invalid character utf-8 encoding.")
-        exit()
+        raise
 
 
 def string_to_dataframe(string_data):

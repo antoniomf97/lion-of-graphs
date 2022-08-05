@@ -5,7 +5,6 @@ import base64
 
 plotter_url = "localhost:8080"
 fitter_url = "localhost:8081"
-
 path = "../tests/"
 
 
@@ -37,7 +36,7 @@ def build_request_json(filename: str = "test.json"):
 
 if __name__ == '__main__':
     connection = http.client.HTTPConnection(plotter_url)
-    connection.request("POST", "/plotter", *build_request_json("test_json_validation.json"))
+    connection.request("POST", "/plotter", *build_request_json())
     response = connection.getresponse()
 
     print(response.read().decode())

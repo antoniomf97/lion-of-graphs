@@ -1,5 +1,6 @@
 from http.server import HTTPServer
 from intmodules import config_logger, logger, MPBRequestHandler
+from intmodules import InvalidJsonFormatError, InvalidJsonSchemaError
 from service import service
 
 
@@ -15,7 +16,9 @@ class PlotterHandler(MPBRequestHandler):
 
         try:
             response = service(request)
-        except ValueError:
+        except InvalidJsonFormatError:
+            self._return_400()
+        except InvalidJsonSchemaError:
             self._return_400()
         else:
             self.send_response(200)
