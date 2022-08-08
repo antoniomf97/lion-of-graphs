@@ -1,6 +1,7 @@
 import json
 import jsonschema
 from jsonschema.exceptions import ValidationError
+from intmodules import logger
 
 
 requestSchema = {
@@ -17,20 +18,20 @@ def validate_schema(request):
     """Validates request JSON schema"""
     try:
         jsonschema.validate(instance=request, schema=requestSchema)
-        return True
     except ValidationError as err:
-        print("Invalid request JSON schema.")
-        exit()
-        return False
+        logger.error(f"{err}: Invalid request JSON schema.")
+        raise
+    else:
+        return True
 
 
 def parse_json(request):
     """Validates and parse JSON request"""
     try:
         return json.loads(request)
-    except ValueError:
-        print("Invalid request: cannot parse JSON.")
-        exit()
+    except ValueError as err:
+        logger.error(f"{err}: Invalid request: cannot parse JSON.")
+        raise
 
 
 def validate_request(request):
@@ -38,6 +39,3 @@ def validate_request(request):
     parsed_response = parse_json(request)
     if validate_schema(parsed_response):
         return parsed_response
-    else:
-        print("Invalid request. Service was abandoned.")
-        exit()

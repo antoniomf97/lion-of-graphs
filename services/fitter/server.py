@@ -1,7 +1,5 @@
-from http.server import SimpleHTTPRequestHandler
 from http.server import HTTPServer
-from intmodules import config_logger
-from intmodules import logger
+from intmodules import config_logger, logger, MPBRequestHandler
 from service import service
 
 
@@ -9,36 +7,23 @@ hostName = "localhost"
 serverPort = 8081
 
 
-class FitterHandler(SimpleHTTPRequestHandler):
-    def _set_headers(self, content_length):
-        self.send_header('Content-type', 'text/html')
-        self.send_header("Content-Length", content_length)
-        self.end_headers()
-        
-    def do_GET(self):
-        self.send_response(200)
-        self._set_headers("0")
-
+class FitterHandler(MPBRequestHandler):
     def do_POST(self):
-        logger.debug("Invoking POST operator for fitter engine.")
         content_length = int(self.headers.get("content-length", "0"))
         length = int(content_length) if content_length else 0
-
-        logger.debug("Reading input request.")
         request = self.rfile.read(length)
 
-        logger.debug("Processing fitter engine for given request.")
-        response = service(request)
-
-        logger.debug("Sending response: 200 - OK.")
-        self.send_response(200)
-        self._set_headers(str(len(response)))
-
-        logger.debug("Retrieving response from engine.")
-        self.wfile.write(response)
-    
-    do_PUT = do_POST
-    do_DELETE = do_GET
+        try:
+            response = service(request)
+        except Exception:
+            response = "Bad request"
+            self._return_400(response)
+        else:
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Content-Length', str(len(response)))
+            self.end_headers()
+            self.wfile.write(response)
 
 
 if __name__ == "__main__":

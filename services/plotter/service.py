@@ -1,6 +1,4 @@
-from intmodules import logger
-from intmodules import validate_request
-from intmodules import preprocess_data
+from intmodules import logger, validate_request, preprocess_data
 from plotter import plotter
 
 
