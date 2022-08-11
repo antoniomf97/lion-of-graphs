@@ -1,13 +1,12 @@
 import json
-import jsonschema
-from intmodules.exceptions import InvalidJsonSchemaError
+from jsonschema import validate
 
 
 requestSchema = {
   "type": "object",
   "properties": {
     "Filename": {"type": "string"},
-    "ContentB64": {"type": "string"}
+    "ContentB64": {"type": "string"},
   },
   "required": ["Filename", "ContentB64"]
 }
@@ -15,8 +14,7 @@ requestSchema = {
 
 def validate_schema(request):
     """Validates request JSON schema"""
-    if not jsonschema.validate(instance=request, schema=requestSchema):
-        raise InvalidJsonSchemaError
+    validate(instance=request, schema=requestSchema)
 
 
 def parse_json(request):
@@ -28,3 +26,4 @@ def validate_request(request):
     """Validates request json in format and schema"""
     parsed_response = parse_json(request)
     validate_schema(parsed_response)
+    return parsed_response
