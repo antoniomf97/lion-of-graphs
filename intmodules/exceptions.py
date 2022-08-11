@@ -1,39 +1,17 @@
-class InvalidJsonFormatError(Exception):
-    def __init__(self):
-        super().__init__(self)
-
-
 class InvalidJsonSchemaError(Exception):
-    def __init__(self):
-        super().__init__(self)
-
-
-class NonNumericValueFoundError(Exception):
+    """Specifies validation error on JSON schema validation"""
     def __init__(self):
         super().__init__(self)
 
 
 class NanValueFoundError(Exception):
+    """Specifies found NaN value(s) error on data validation"""
     def __init__(self):
         super().__init__(self)
 
 
 class DuplicatedEntryError(Exception):
-    def __init__(self):
-        super().__init__(self)
-
-
-class InvalidBase64EncodingError(Exception):
-    def __init__(self):
-        super().__init__(self)
-
-
-class InvalidCharacterUtf8EncodingError(Exception):
-    def __init__(self):
-        super().__init__(self)
-
-
-class StringToDataframeError(Exception):
+    """Specifies duplicated entry error on data validation"""
     def __init__(self):
         super().__init__(self)
 

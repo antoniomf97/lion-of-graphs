@@ -1,6 +1,8 @@
+from service import service
 from http.server import HTTPServer
 from intmodules import config_logger, logger, MPBRequestHandler
-from service import service
+from binascii import Error as ReadingBase64Error
+from intmodules import InvalidJsonSchemaError, DuplicatedEntryError, NanValueFoundError
 
 
 hostName = "localhost"
@@ -15,7 +17,22 @@ class FitterHandler(MPBRequestHandler):
 
         try:
             response = service(request)
-        except Exception:
+        except ReadingBase64Error:
+            response = "Bad Request"
+            self._return_400(response)
+        except InvalidJsonSchemaError:
+            response = "Bad Request"
+            self._return_400(response)
+        except NanValueFoundError:
+            response = "Bad Request"
+            self._return_400(response)
+        except DuplicatedEntryError:
+            response = "Bad Request"
+            self._return_400(response)
+        except ValueError:
+            response = "Bad Request"
+            self._return_400(response)
+        except UnicodeDecodeError:
             response = "Bad Request"
             self._return_400(response)
         else:
