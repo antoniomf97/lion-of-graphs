@@ -22,7 +22,7 @@ class PlotterHandler(MPBRequestHandler):
             response = "Bad Request: ReadingBase64Error"
             self._return_400(response)
         except ValidationError:
-            response = "Bad Request: ValidationError"
+            response = "Bad Request: SchemaValidationError"
             self._return_400(response)
         except NanValueFoundError:
             response = "Bad Request: NanValueFoundError"
