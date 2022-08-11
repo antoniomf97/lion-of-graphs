@@ -1,4 +1,4 @@
-from exceptions import DuplicatedEntryError, NanValueFoundError
+from intmodules.exceptions import DuplicatedEntryError, NanValueFoundError
 
 
 def check_numeric_values(data):

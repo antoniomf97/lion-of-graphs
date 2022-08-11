@@ -16,7 +16,7 @@ class FitterHandler(MPBRequestHandler):
         try:
             response = service(request)
         except Exception:
-            response = "Bad request"
+            response = "Bad Request"
             self._return_400(response)
         else:
             self.send_response(200)

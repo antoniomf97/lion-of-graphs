@@ -36,7 +36,7 @@ def build_request_json(filename: str = "test.json"):
 
 if __name__ == '__main__':
     connection = http.client.HTTPConnection(plotter_url)
-    connection.request("POST", "/plotter", *build_request_json())
+    connection.request("POST", "/plotter", *build_request_csv())
     response = connection.getresponse()
 
     print(response.read().decode())

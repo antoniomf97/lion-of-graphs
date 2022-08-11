@@ -1,6 +1,6 @@
 import json
 import jsonschema
-from jsonschema.exceptions import ValidationError
+from intmodules.exceptions import InvalidJsonSchemaError
 
 
 requestSchema = {
@@ -16,7 +16,7 @@ requestSchema = {
 def validate_schema(request):
     """Validates request JSON schema"""
     if not jsonschema.validate(instance=request, schema=requestSchema):
-        raise ValidationError
+        raise InvalidJsonSchemaError
 
 
 def parse_json(request):
