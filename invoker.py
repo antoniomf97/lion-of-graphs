@@ -27,16 +27,16 @@ def build_request_csv(filename: str = "test.csv"):
     return request, headers
 
 
-def build_request_json(filename: str = "test.json"):
+def build_request_json(filename: str = "test"):
     headers = {'Content-type': 'application/json'}
-    body = get_data_json(path + filename)
+    body = get_data_json(path + filename + ".json")
     request = body
     return request, headers
 
 
 if __name__ == '__main__':
     connection = http.client.HTTPConnection(plotter_url)
-    connection.request("POST", "/plotter", *build_request_json())
+    connection.request("POST", "/plotter", *build_request_json("test_json_validation"))
     response = connection.getresponse()
 
     print(response.read().decode())
