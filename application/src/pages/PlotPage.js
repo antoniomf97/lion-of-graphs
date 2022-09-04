@@ -23,7 +23,7 @@ export default class PlotPage extends React.Component {
     if (this.state.file) {
         const formData = new FormData();
         formData.append('file', this.state.file)
-        const response = await fetch('http://localhost:8080', { // FIXME: don't have hardcoded URLs
+        const response = await fetch(process.env.REACT_APP_MBP_PLOTTER_API, {
           method: 'POST',
           headers: {
             'Content-type': 'multipart/form-data',
