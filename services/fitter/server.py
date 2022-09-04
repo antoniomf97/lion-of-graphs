@@ -1,13 +1,11 @@
+import os
+
 from service import service
 from http.server import HTTPServer
 from intmodules import config_logger, logger, MPBRequestHandler
 from binascii import Error as ReadingBase64Error
 from intmodules import DuplicatedEntryError, NanValueFoundError
 from jsonschema.exceptions import ValidationError
-
-
-hostName = "localhost"
-serverPort = 8081
 
 
 class FitterHandler(MPBRequestHandler):
@@ -48,6 +46,9 @@ if __name__ == "__main__":
     filename, level = "fitter.log", 10
     config_logger(filename=filename)
     logger.debug("Initialized logger for plotter service at {} with level {}.".format(filename, level))
+
+    hostName = os.getenv('SERVER_HOSTNAME', 'localhost')
+    serverPort = os.getenv('SERVER_PORT', '8081')
 
     webServer = HTTPServer((hostName, serverPort), FitterHandler)
     print("Fitter server started at http://{}:{}".format(hostName, serverPort))
