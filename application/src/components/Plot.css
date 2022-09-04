@@ -1,5 +1,5 @@
-.axis {
-    border-style: none none solid solid;
-    border-width: 1px;
-    border-color: #999;
+.scatter-plt {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
