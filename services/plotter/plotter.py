@@ -13,7 +13,10 @@ def plotter(data, configs):
 
 
 def set_configurations(configs):
-    configs
+    plt.xlabel = configs["xlabel"]
+    plt.ylabel = configs["ylabel"]
+    plt.title = configs["title"]
+    plt.grid = True
 
 
 def plotter_for_fitter(data_x, data_y, function):
