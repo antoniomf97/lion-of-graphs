@@ -12,7 +12,7 @@ def service(request):
     data = preprocess_data(request["ContentB64"])
 
     logger.debug("Calling plotter engine for given data.")
-    plotter(data)
+    plotter(data, request["Configurations"])
 
     logger.debug("Returning encoded json data.")
     return data.to_json().encode()

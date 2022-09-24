@@ -3,13 +3,20 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plotter(data):
+def plotter(data, configs):
     logger.debug("Building plot for given data.")
     plt.figure()
     plt.plot(data)
 
     logger.debug("Show resulting plot.")
     plt.show()
+
+
+def set_configurations(configs):
+    plt.xlabel = configs["xlabel"]
+    plt.ylabel = configs["ylabel"]
+    plt.title = configs["title"]
+    plt.grid = True
 
 
 def plotter_for_fitter(data_x, data_y, function):
@@ -22,4 +29,3 @@ def plotter_for_fitter(data_x, data_y, function):
     plt.legend()
 
     logger.debug("Show resulting plot.")
-    # plt.show()
