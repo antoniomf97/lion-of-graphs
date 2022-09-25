@@ -1,11 +1,16 @@
+import { useState } from "react";
+
 import Plot from "./components/Plot";
-import { submitPlotRequest } from "./api/plotter";
+import TabNavigator from "./containers/TabNavigator";
 
 function App() {
+  const [plot, setPlot] = useState("");
+
   return (
     <div>
       <h1> Hello MPB! </h1>
-      <Plot submitter={submitPlotRequest} />
+      <TabNavigator plot={plot} setPlot={setPlot} />
+      <Plot plot={plot} />
     </div>
   );
 }

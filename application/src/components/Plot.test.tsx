@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { jest, test } from "@jest/globals";
 
 import { submitPlotRequest } from "../api/plotter";
-import type { formSubmitter } from "../types/submitter";
+import type { formSubmitter } from "../@types/submitter";
 import Plot from "./Plot";
 import { act } from "react-dom/test-utils";
 
