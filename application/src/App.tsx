@@ -4,7 +4,7 @@ import Plot from "./components/Plot";
 import TabNavigator from "./containers/TabNavigator";
 
 function App() {
-  const [plot, setPlot] = useState("");
+  const [plot, setPlot] = useState("hack-813290_960_720.jpg");
 
   return (
     <div>
