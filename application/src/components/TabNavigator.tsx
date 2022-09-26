@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import PlotterTab from "../components/PlotterTab";
-import FitterTab from "../components/FitterTab";
+import PlotterTab from "./PlotterTab";
+import FitterTab from "./FitterTab";
 import { submitPlotRequest } from "../api/plotter";
 import { submitFitRequest } from "../api/fitter";
 
