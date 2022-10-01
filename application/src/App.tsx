@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <h1> Hello MPB! </h1>
-      <TabNavigator plot={plot} setPlot={setPlot} />
+      <TabNavigator setPlot={setPlot} />
       <Plot plot={plot} />
     </div>
   );

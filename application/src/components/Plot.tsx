@@ -10,6 +10,9 @@ const Plot: React.FC<PlotProps> = ({ plot }) => {
   return (
     <div className="scatter-plt">
       <img src={plot} alt="error displaying plot" />
+      <a href={plot} download={plot}>
+        download plot
+      </a>
     </div>
   );
 };

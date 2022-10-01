@@ -4,15 +4,10 @@ import type { formSubmitter } from "../@types/submitter";
 
 type FitterTabProps = {
   submitter: formSubmitter;
-  plot: string;
   setPlot: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const FitterTab: React.FC<FitterTabProps> = ({
-  submitter,
-  plot, // Q: possible to use for download in the future?
-  setPlot,
-}) => {
+const FitterTab: React.FC<FitterTabProps> = ({ submitter, setPlot }) => {
   const [dataFileName, setDataFileName] = useState<File>();
   const [fittingFunc, setFittingFunc] = useState("y = x + 1");
 
