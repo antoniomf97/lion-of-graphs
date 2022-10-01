@@ -4,15 +4,10 @@ import type { formSubmitter } from "../@types/submitter";
 
 type PlotterTabProps = {
   submitter: formSubmitter;
-  plot: string;
   setPlot: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const PlotterTab: React.FC<PlotterTabProps> = ({
-  submitter,
-  plot, // Q: possible to use for download in the future?
-  setPlot,
-}) => {
+const PlotterTab: React.FC<PlotterTabProps> = ({ submitter, setPlot }) => {
   const [dataFileName, setDataFileName] = useState<File>();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

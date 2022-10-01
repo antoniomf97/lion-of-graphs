@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import Plot from "./components/Plot";
-import TabNavigator from "./containers/TabNavigator";
+import TabNavigator from "./components/TabNavigator";
 
 function App() {
   const [plot, setPlot] = useState("hack-813290_960_720.jpg");
@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <h1> Hello MPB! </h1>
-      <TabNavigator plot={plot} setPlot={setPlot} />
+      <TabNavigator setPlot={setPlot} />
       <Plot plot={plot} />
     </div>
   );
