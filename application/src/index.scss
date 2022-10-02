@@ -1,0 +1,12 @@
+@use "@styles/boxes";
+
+// margin is for the marginalized
+body {
+  margin: 0;
+  text-align: center;
+}
+
+// prevent images from escaping their parents -> bad images!
+img {
+  max-width: 100%;
+}

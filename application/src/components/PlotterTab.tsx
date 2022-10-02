@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import "./PlotterTab.scss";
+
 import type { formSubmitter } from "../@types/submitter";
 
 type PlotterTabProps = {

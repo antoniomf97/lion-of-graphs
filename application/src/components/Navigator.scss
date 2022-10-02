@@ -1,0 +1,8 @@
+@use "../@styles/boxes";
+
+.navigator {
+    min-width: boxes.$min-width-box;
+}
+.navigator-tab {
+    min-width: boxes.$min-width-box;
+}

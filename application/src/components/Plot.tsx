@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Plot.css";
+import "./Plot.scss";
 
 type PlotProps = {
   plot: string;
@@ -8,8 +8,10 @@ type PlotProps = {
 
 const Plot: React.FC<PlotProps> = ({ plot }) => {
   return (
-    <div className="scatter-plt">
-      <img src={plot} alt="error displaying plot" />
+    <div className="flex-box-child">
+      <div className="plot">
+        <img src={plot} alt="error displaying plot" />
+      </div>
       <a href={plot} download={plot}>
         download plot
       </a>

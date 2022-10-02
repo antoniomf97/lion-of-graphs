@@ -1,0 +1,26 @@
+// to ensure stuff is readable even if display is terrible
+$min-width-box: 600px;
+
+// to display the two columns
+.flex-box-container {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.flex-box-child {
+  min-width: 40%;
+  padding: 2%;
+  float: left;
+  border: solid 1px red;
+}
+
+// header
+.box-header {
+  text-align: center;
+}
+
+// footer
+.box-footer {
+  text-align: center;
+}
