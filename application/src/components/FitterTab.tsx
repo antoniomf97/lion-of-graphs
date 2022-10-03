@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import "./FitterTab.scss";
+
 import type { formSubmitter } from "../@types/submitter";
 
 type FitterTabProps = {

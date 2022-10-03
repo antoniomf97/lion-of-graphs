@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import "./Navigator.scss";
+
 import PlotterTab from "./PlotterTab";
 import FitterTab from "./FitterTab";
 import { submitPlotRequest } from "../api/plotter";
@@ -22,12 +24,12 @@ const TabNavigator: React.FC<TabNavigatorProps> = ({ setPlot }) => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="flex-box-child">
+      <div className="navigator">
         <button onClick={() => changeSelectedTab("plotter")}>plotter</button>
         <button onClick={() => changeSelectedTab("fitter")}>fitter</button>
       </div>
-      {renderSwitcher(selectedTab)}
+      <div className="navigator-tab">{renderSwitcher(selectedTab)}</div>
     </div>
   );
 };
