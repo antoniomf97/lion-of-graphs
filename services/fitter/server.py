@@ -1,5 +1,4 @@
 import os
-
 from service import service
 from http.server import HTTPServer
 from intmodules import config_logger, logger, MPBRequestHandler
@@ -44,15 +43,15 @@ class FitterHandler(MPBRequestHandler):
 
 if __name__ == "__main__":
     filename, level = "fitter.log", 10
-    config_logger(filename=filename)
-    logger.debug("Initialized logger for plotter service at {} with level {}.".format(filename, level))
+    #config_logger(filename=filename)
+    #logger.debug("Initialized logger for plotter service at {} with level {}.".format(filename, level))
 
     hostName = os.getenv('SERVER_HOSTNAME', 'localhost')
-    serverPort = os.getenv('SERVER_PORT', '8081')
+    serverPort = os.getenv('SERVER_PORT', 8081)
 
     webServer = HTTPServer((hostName, serverPort), FitterHandler)
     print("Fitter server started at http://{}:{}".format(hostName, serverPort))
-    logger.debug("Fitter server started at http://{}:{}".format(hostName, serverPort))
+    #logger.debug("Fitter server started at http://{}:{}".format(hostName, serverPort))
 
     try:
         webServer.serve_forever()
@@ -61,4 +60,4 @@ if __name__ == "__main__":
 
     webServer.server_close()
     print("Fitter server stopped.")
-    logger.debug("Fitter server stopped.")
+    #logger.debug("Fitter server stopped.")

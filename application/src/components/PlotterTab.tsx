@@ -16,11 +16,16 @@ const PlotterTab: React.FC<PlotterTabProps> = ({ submitter, setPlot }) => {
     setDataFileName(fileList[0]);
   };
 
+  const default_json = JSON.stringify({
+    title: 'Title tities',
+  })
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (dataFileName) {
       const formData = new FormData();
       formData.append("file", dataFileName, dataFileName.name);
+      formData.append("options", default_json);
       const data = await submitter(formData);
       setPlot(data);
     }
