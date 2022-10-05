@@ -24,5 +24,5 @@ def config_logger(filename: str = "log.log", filemode: chr = 'w', level: int = l
     """Configures the project logger for given inputs"""
     if clean_logs:
         clean_all_logs()
-    log.basicConfig(filename=log_path+filename, filemode=filemode, level=level, format=log_format)
+    log.basicConfig(filename=log_path + filename, filemode=filemode, level=level, format=log_format)
     config_existing_logger(disable_existing_loggers)

@@ -1,9 +1,17 @@
-from intmodules.reader import base64_to_dataframe
-from intmodules.validator import validate_data
+from intmodules.exceptions import DuplicatedEntryError, NanValueFoundError
 
 
-def preprocess_data(b64_data):
-    """Decodes, converts and validates input data"""
-    data = base64_to_dataframe(b64_data)
-    validate_data(data)
-    return data
+def validate_data(dataframe):
+    """Validates input data"""
+    data_nulls = dataframe.isnull()
+    if data_nulls.any().any():
+        raise NanValueFoundError
+
+    for col in dataframe.columns:
+        dataframe[col] = dataframe[col].astype(float)
+
+    index = dataframe.index.values
+    if not len(index) == len(set(index)):
+        raise DuplicatedEntryError
+
+    return dataframe

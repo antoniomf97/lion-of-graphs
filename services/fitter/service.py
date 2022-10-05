@@ -1,4 +1,4 @@
-from intmodules import logger, validate_request, preprocess_data
+from intmodules import logger, parse_request, preprocess_data
 from fitter import fitter
 
 
@@ -6,10 +6,10 @@ def service(request):
     """Triggers the fitter engine for the given request"""
 
     logger.debug("Validating request in terms of format and JSON schema.")
-    request = validate_request(request)
+    request = parse_request(request)
 
     logger.debug("Preprocessing input data.")
-    data = preprocess_data(request["ContentB64"])
+    data = preprocess_data(request["data"])
 
     logger.debug("Calling fitter engine for given data.")
     fitter(data)
