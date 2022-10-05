@@ -44,7 +44,7 @@ if __name__ == "__main__":
     # logger.debug("Initialized logger for plotter service at {} with level {}.".format(filename, level))
 
     hostName = os.getenv('SERVER_HOSTNAME', 'localhost')
-    serverPort = os.getenv('SERVER_PORT', 8080)
+    serverPort = int(os.getenv('SERVER_PORT', 8080))
 
     webServer = HTTPServer((hostName, serverPort), PlotterHandler)
     print("Plotter server started at http://{}:{}".format(hostName, serverPort))
