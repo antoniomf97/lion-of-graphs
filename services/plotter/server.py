@@ -1,7 +1,7 @@
 import os
 from service import service
 from http.server import HTTPServer
-from intmodules import MPBRequestHandler # config_logger, logger, 
+from intmodules import MPBRequestHandler  # config_logger, logger,
 from intmodules import InvalidRequestError
 from jsonschema.exceptions import ValidationError
 
