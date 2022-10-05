@@ -14,7 +14,8 @@ class FitterHandler(MPBRequestHandler):
         request = self.rfile.read(length)
 
         try:
-            response = service(request)
+            parsed_request = self._multipart_parser(request)
+            response = service(parsed_request)
         except ReadingBase64Error:
             response = "Bad Request: ReadingBase64Error"
             self._return_400(response)
@@ -43,15 +44,15 @@ class FitterHandler(MPBRequestHandler):
 
 if __name__ == "__main__":
     filename, level = "fitter.log", 10
-    #config_logger(filename=filename)
-    #logger.debug("Initialized logger for plotter service at {} with level {}.".format(filename, level))
+    # config_logger(filename=filename)
+    # logger.debug("Initialized logger for plotter service at {} with level {}.".format(filename, level))
 
     hostName = os.getenv('SERVER_HOSTNAME', 'localhost')
     serverPort = os.getenv('SERVER_PORT', 8081)
 
     webServer = HTTPServer((hostName, serverPort), FitterHandler)
     print("Fitter server started at http://{}:{}".format(hostName, serverPort))
-    #logger.debug("Fitter server started at http://{}:{}".format(hostName, serverPort))
+    # logger.debug("Fitter server started at http://{}:{}".format(hostName, serverPort))
 
     try:
         webServer.serve_forever()
@@ -60,4 +61,4 @@ if __name__ == "__main__":
 
     webServer.server_close()
     print("Fitter server stopped.")
-    #logger.debug("Fitter server stopped.")
+    # logger.debug("Fitter server stopped.")

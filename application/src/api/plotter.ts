@@ -7,7 +7,7 @@ export const submitPlotRequest: formSubmitter = async (formData: FormData) => {
     method: "POST",
     headers: {
       // "Content-type": "multipart/form-data",
-      //"Access-Control-Allow-Origin": "*", // FIXME: this is to go around localhost issues
+      // "Access-Control-Allow-Origin": "*", // FIXME: this is to go around localhost issues
     },
     body: formData,
   });

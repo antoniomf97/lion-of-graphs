@@ -23,11 +23,16 @@ const FitterTab: React.FC<FitterTabProps> = ({ submitter, setPlot }) => {
     setFittingFunc(fittingFunc);
   };
 
+  const default_json = JSON.stringify({
+    title: 'Title tities',
+  })
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (dataFileName && fittingFunc) {
       const formData = new FormData();
       formData.append("file", dataFileName, dataFileName.name);
+      formData.append("options", default_json);
       formData.append("func", fittingFunc);
       const data = await submitter(formData);
       setPlot(data);
