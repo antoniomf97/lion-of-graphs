@@ -1,29 +1,17 @@
 from intmodules.exceptions import DuplicatedEntryError, NanValueFoundError
 
 
-def check_numeric_values(data):
-    """Checks if given data is of type float"""
-    for col in data.columns:
-        data[col] = data[col].astype(float)
-
-
-def check_null_values(data):
-    """Checks if there are any null values and how many"""
-    data_nulls = data.isnull()
+def validate_data(dataframe):
+    """Validates input data"""
+    data_nulls = dataframe.isnull()
     if data_nulls.any().any():
         raise NanValueFoundError
 
+    for col in dataframe.columns:
+        dataframe[col] = dataframe[col].astype(float)
 
-def check_index_duplicates(data):
-    """Check if data index has duplicates"""
-    index = data.index.values
+    index = dataframe.index.values
     if not len(index) == len(set(index)):
         raise DuplicatedEntryError
 
-
-def preprocess_data(data):
-    """Validates input data"""
-    check_null_values(data)
-    check_numeric_values(data)
-    check_index_duplicates(data)
-    return data
+    return dataframe

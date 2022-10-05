@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 import type { formSubmitter } from "../@types/submitter";
+import type { options } from "../@types/options";
+
 
 type PlotterTabProps = {
   submitter: formSubmitter;
@@ -9,6 +11,7 @@ type PlotterTabProps = {
 
 const PlotterTab: React.FC<PlotterTabProps> = ({ submitter, setPlot }) => {
   const [dataFileName, setDataFileName] = useState<File>();
+  const [options, setOptions] = useState<options>({title: ""});
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
@@ -16,16 +19,12 @@ const PlotterTab: React.FC<PlotterTabProps> = ({ submitter, setPlot }) => {
     setDataFileName(fileList[0]);
   };
 
-  const default_json = JSON.stringify({
-    title: 'Title tities',
-  })
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (dataFileName) {
       const formData = new FormData();
       formData.append("file", dataFileName, dataFileName.name);
-      formData.append("options", default_json);
+      formData.append("options", JSON.stringify(options));
       const data = await submitter(formData);
       setPlot(data);
     }

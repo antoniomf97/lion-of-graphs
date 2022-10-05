@@ -6,8 +6,6 @@ export const submitFitRequest: formSubmitter = async (formData: FormData) => {
   const response = await fetch(fitterApi, {
     method: "POST",
     headers: {
-      // "Content-type": "multipart/form-data",
-      // "Access-Control-Allow-Origin": "*", // FIXME: this is to go around localhost issues
     },
     body: formData,
   });

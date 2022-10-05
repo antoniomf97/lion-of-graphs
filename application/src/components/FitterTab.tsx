@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 import type { formSubmitter } from "../@types/submitter";
+import type { options } from "../@types/options";
+
 
 type FitterTabProps = {
   submitter: formSubmitter;
@@ -10,6 +12,8 @@ type FitterTabProps = {
 const FitterTab: React.FC<FitterTabProps> = ({ submitter, setPlot }) => {
   const [dataFileName, setDataFileName] = useState<File>();
   const [fittingFunc, setFittingFunc] = useState("y = x + 1");
+  const [options, setOptions] = useState<options>({title: ""});
+
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
@@ -23,16 +27,12 @@ const FitterTab: React.FC<FitterTabProps> = ({ submitter, setPlot }) => {
     setFittingFunc(fittingFunc);
   };
 
-  const default_json = JSON.stringify({
-    title: 'Title tities',
-  })
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (dataFileName && fittingFunc) {
       const formData = new FormData();
       formData.append("file", dataFileName, dataFileName.name);
-      formData.append("options", default_json);
+      formData.append("options", JSON.stringify(options));
       formData.append("func", fittingFunc);
       const data = await submitter(formData);
       setPlot(data);

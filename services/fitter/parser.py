@@ -2,7 +2,7 @@ from json import loads
 from pandas import read_csv
 from io import StringIO
 from jsonschema import validate
-from intmodules.exceptions import InvalidRequestError
+from intmodules import InvalidRequestError
 
 
 options_schema = {
@@ -17,12 +17,10 @@ options_schema = {
 
 
 def parse_request(request: tuple) -> dict:
-    """Validates request json in format and schema"""
+    """Validate and parses request into dict"""
 
-    if len(request) == 2:
-        file_part, options_part = (part.content.decode(part.encoding) for part in request)
-    elif len(request) == 3:
-        file_part, options_part, _ = (part.content.decode(part.encoding) for part in request)
+    if len(request) == 3:
+        file_part, options_part, func_part = (part.content.decode(part.encoding) for part in request)
     else:
         raise InvalidRequestError
 
@@ -31,4 +29,4 @@ def parse_request(request: tuple) -> dict:
 
     validate(instance=options, schema=options_schema)
 
-    return {"data": data, "options": options}
+    return {"data": data, "options": options, "func": func_part}

@@ -31,9 +31,9 @@ class FitterHandler(MPBRequestHandler):
         except ValueError:
             response = "Bad Request: ValueError"
             self._return_400(response)
-        except UnicodeDecodeError:
-            response = "Bad Request: UnicodeDecodeError"
-            self._return_400(response)
+        except Exception:
+            response = "Oops: something went wrong"
+            self._return_500(response)
         else:
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
