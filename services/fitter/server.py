@@ -2,7 +2,6 @@ import os
 from service import service
 from http.server import HTTPServer
 from intmodules import config_logger, logger, MPBRequestHandler
-from binascii import Error as ReadingBase64Error
 from intmodules import DuplicatedEntryError, NanValueFoundError
 from jsonschema.exceptions import ValidationError
 
@@ -16,9 +15,6 @@ class FitterHandler(MPBRequestHandler):
         try:
             parsed_request = self._multipart_parser(request)
             response = service(parsed_request)
-        except ReadingBase64Error:
-            response = "Bad Request: ReadingBase64Error"
-            self._return_400(response)
         except ValidationError:
             response = "Bad Request: SchemaValidationError"
             self._return_400(response)
