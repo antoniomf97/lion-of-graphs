@@ -1,8 +1,8 @@
 import os
 from service import service
 from http.server import HTTPServer
-from intmodules import config_logger, logger, MPBRequestHandler
-from intmodules import DuplicatedEntryError, NanValueFoundError
+from intmodules import MPBRequestHandler # config_logger, logger,
+from intmodules import InvalidRequestError
 from jsonschema.exceptions import ValidationError
 
 
@@ -15,17 +15,8 @@ class FitterHandler(MPBRequestHandler):
         try:
             parsed_request = self._multipart_parser(request)
             response = service(parsed_request)
-        except ValidationError:
-            response = "Bad Request: SchemaValidationError"
-            self._return_400(response)
-        except NanValueFoundError:
-            response = "Bad Request: NanValueFoundError"
-            self._return_400(response)
-        except DuplicatedEntryError:
-            response = "Bad Request: DuplicatedEntryError"
-            self._return_400(response)
-        except ValueError:
-            response = "Bad Request: ValueError"
+        except (InvalidRequestError, ValidationError, ValueError) as e:
+            response = "Bad Request: " + str(e)
             self._return_400(response)
         except Exception:
             response = "Oops: something went wrong"

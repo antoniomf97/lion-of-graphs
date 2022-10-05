@@ -1,17 +1,17 @@
-from intmodules.exceptions import DuplicatedEntryError, NanValueFoundError
+from intmodules.exceptions import InvalidRequestError
 
 
 def validate_data(dataframe):
     """Validates input data"""
     data_nulls = dataframe.isnull()
     if data_nulls.any().any():
-        raise NanValueFoundError
+        raise InvalidRequestError("found NaN value in provided data")
 
     for col in dataframe.columns:
         dataframe[col] = dataframe[col].astype(float)
 
     index = dataframe.index.values
     if not len(index) == len(set(index)):
-        raise DuplicatedEntryError
+        raise InvalidRequestError("found duplicated entry in provided data")
 
     return dataframe
