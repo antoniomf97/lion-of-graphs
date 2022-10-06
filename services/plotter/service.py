@@ -1,5 +1,6 @@
-from intmodules import logger, parse_request, preprocess_data
+from intmodules import logger, validate_data
 from plotter import plotter
+from parser import parse_request
 
 
 def service(request):
@@ -9,7 +10,7 @@ def service(request):
     request = parse_request(request)
 
     logger.debug("Preprocessing input data.")
-    data = preprocess_data(request["data"])
+    data = validate_data(request["data"])
 
     logger.debug("Calling plotter engine for given data.")
     plotter(data, request["options"])
