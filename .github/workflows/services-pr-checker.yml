@@ -6,9 +6,9 @@ on:
       - edited
       - reopened
     branches:
-      - "services/**"
+      - "master"
 jobs:
-  review-standards:
+  review-service-standards:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
