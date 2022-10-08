@@ -39,3 +39,7 @@ def plotter_for_fitter(data_x, data_y, function):
     plt.legend()
 
     logger.debug("Show resulting plot.")
+
+    buf = BytesIO()
+    plt.savefig(buf, format='png')
+    return buf

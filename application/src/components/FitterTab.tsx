@@ -32,13 +32,11 @@ const FitterTab: React.FC<FitterTabProps> = ({ submitter, setPlot }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (dataFileName && fittingFunc) {
-      console.log("Hello world");
       const formData = new FormData();
       formData.append("file", dataFileName, dataFileName.name);
       formData.append("options", JSON.stringify(options));
       formData.append("func", fittingFunc);
       const data = await submitter(formData);
-      console.log(data);
       setPlot(data);
     }
   };

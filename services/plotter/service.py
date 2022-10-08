@@ -15,5 +15,5 @@ def service(request):
     logger.debug("Calling plotter engine for given data.")
     response = plotter(data, request["options"])
 
-    logger.debug("Returning encoded json data.")
+    logger.debug("Returning image as BytesIO.")
     return response

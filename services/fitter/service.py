@@ -13,7 +13,7 @@ def service(request):
     data = validate_data(request["data"])
 
     logger.debug("Calling fitter engine for given data.")
-    fitter(data)
+    response = fitter(data)
 
-    logger.debug("Returning encoded json data.")
-    return data.to_json().encode()
+    logger.debug("Returning image as BytesIO.")
+    return response

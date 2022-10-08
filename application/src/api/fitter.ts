@@ -9,6 +9,6 @@ export const submitFitRequest: formSubmitter = async (formData: FormData) => {
     },
     body: formData,
   });
-  const data = await response.json();
-  return data;
+  const data = await response.blob();
+  return URL.createObjectURL(data);
 };

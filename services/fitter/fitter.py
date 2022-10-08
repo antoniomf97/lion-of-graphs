@@ -20,10 +20,11 @@ def fitter(data):
     plotter_for_fitter(xdata, ydata, lambda x: LinearRegression(x, *parameters_l))
 
     # logger.debug("Building plot for quadratic regression.")
-    plotter_for_fitter(xdata, ydata, lambda x: QuadraticRegression(x, *parameters_q))
+    response = plotter_for_fitter(xdata, ydata, lambda x: QuadraticRegression(x, *parameters_q))
 
     # logger.debug("Show resulting plot.")
-    plt.show()
+    # plt.show()
+    return response
 
 
 def LinearRegression(x, m, c):

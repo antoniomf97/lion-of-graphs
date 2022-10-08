@@ -9,6 +9,6 @@ export const submitPlotRequest: formSubmitter = async (formData: FormData) => {
     },
     body: formData,
   });
-  const data = await response.text();
-  return data;
+  const data = await response.blob();
+  return URL.createObjectURL(data);
 };
