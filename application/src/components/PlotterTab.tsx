@@ -28,7 +28,8 @@ const PlotterTab: React.FC<PlotterTabProps> = ({ submitter, setPlot }) => {
       formData.append("file", dataFileName, dataFileName.name);
       formData.append("options", JSON.stringify(options));
       const data = await submitter(formData);
-      setPlot(data);
+      const img = Buffer.from(data).toString("base64");
+      setPlot(img);
     }
   };
 

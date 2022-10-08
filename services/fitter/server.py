@@ -23,10 +23,16 @@ class FitterHandler(MPBRequestHandler):
             self._return_500(response)
         else:
             self.send_response(200)
-            self.send_header('Content-type', 'application/json')
+            self.send_header('Content-type', 'image/png')
             self.send_header('Content-Length', str(len(response)))
             self.end_headers()
             self.wfile.write(response)
+
+    def do_OPTIONS(self):
+        self.send_response(204)
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        self.wfile.write()
 
 
 if __name__ == "__main__":
