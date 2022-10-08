@@ -14,7 +14,7 @@ type FitterTabProps = {
 const FitterTab: React.FC<FitterTabProps> = ({ submitter, setPlot }) => {
   const [dataFileName, setDataFileName] = useState<File>();
   const [fittingFunc, setFittingFunc] = useState("y = x + 1");
-  const [options, setOptions] = useState<options>({title: ""});
+  const [options] = useState<options>({title: ""});
 
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,11 +32,13 @@ const FitterTab: React.FC<FitterTabProps> = ({ submitter, setPlot }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (dataFileName && fittingFunc) {
+      console.log("Hello world");
       const formData = new FormData();
       formData.append("file", dataFileName, dataFileName.name);
       formData.append("options", JSON.stringify(options));
       formData.append("func", fittingFunc);
       const data = await submitter(formData);
+      console.log(data);
       setPlot(data);
     }
   };

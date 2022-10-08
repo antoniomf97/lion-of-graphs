@@ -25,17 +25,9 @@ class PlotterHandler(MPBRequestHandler):
             self.send_response(200)
             self.send_header('Access-Control-Allow-Origin', '*')
             self.send_header('Content-Type', 'image/png')
-            self.send_header('Content-Length', str(len(response)))
+            self.send_header('Content-Length', str(response.getbuffer().nbytes))
             self.end_headers()
-            self.wfile.write(response)
-
-    def do_OPTIONS(self):
-        self.send_response(204)
-        self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "POST")
-        self.send_header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Content-Length")
-        self.end_headers()
-        # self.wfile.write()
+            self.wfile.write(response.getvalue())
 
 
 if __name__ == "__main__":

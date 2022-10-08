@@ -13,7 +13,7 @@ type PlotterTabProps = {
 
 const PlotterTab: React.FC<PlotterTabProps> = ({ submitter, setPlot }) => {
   const [dataFileName, setDataFileName] = useState<File>();
-  const [options, setOptions] = useState<options>({title: ""});
+  const [options] = useState<options>({title: ""});
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
@@ -28,8 +28,7 @@ const PlotterTab: React.FC<PlotterTabProps> = ({ submitter, setPlot }) => {
       formData.append("file", dataFileName, dataFileName.name);
       formData.append("options", JSON.stringify(options));
       const data = await submitter(formData);
-      const img = Buffer.from(data).toString("base64");
-      setPlot(img);
+      setPlot(data);
     }
   };
 

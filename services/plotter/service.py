@@ -13,7 +13,7 @@ def service(request):
     data = validate_data(request["data"])
 
     logger.debug("Calling plotter engine for given data.")
-    plotter(data, request["options"])
+    response = plotter(data, request["options"])
 
     logger.debug("Returning encoded json data.")
-    return data.to_json().encode()
+    return response
