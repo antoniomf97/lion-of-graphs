@@ -1,5 +1,5 @@
 from io import BytesIO
-from intmodules import logger
+from services.utils import logger
 import matplotlib.pyplot as plt
 
 import numpy as np
