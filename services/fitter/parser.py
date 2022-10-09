@@ -22,7 +22,7 @@ def parse_request(request: tuple) -> dict:
     if len(request) == 3:
         file_part, options_part, func_part = (part.content.decode(part.encoding) for part in request)
     else:
-        raise InvalidRequestError("expected three parts in multipart/form-data submit")
+        raise InvalidRequestError("Expected three parts in multipart/form-data submit.")
 
     data = read_csv(StringIO(file_part), sep=",", index_col=0)
     options = loads(options_part)

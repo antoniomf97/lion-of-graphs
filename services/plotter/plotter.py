@@ -1,17 +1,25 @@
+from io import BytesIO
 from intmodules import logger
 import matplotlib.pyplot as plt
+
 import numpy as np
 
 
 def plotter(data, configs):
     # logger.debug("Building plot for given data.")
-    plt.figure()
+    fig = plt.figure()
+
     plt.plot(data)
 
     set_configurations(configs)
 
     # logger.debug("Show resulting plot.")
-    plt.show()
+    # plt.show()
+
+    buf = BytesIO()
+    plt.savefig(buf, format='png')
+    return buf
+    # return Image.fromarray(np.asarray(canvas.buffer_rgba()))
 
 
 def set_configurations(configs):
@@ -31,3 +39,7 @@ def plotter_for_fitter(data_x, data_y, function):
     plt.legend()
 
     logger.debug("Show resulting plot.")
+
+    buf = BytesIO()
+    plt.savefig(buf, format='png')
+    return buf

@@ -5,7 +5,7 @@ from requests_toolbelt.multipart import decoder
 class MPBRequestHandler(SimpleHTTPRequestHandler):
     def _set_headers(self, content_length: int = 0):
         """Sets the response headers for the give content_length"""
-        self.send_header('Content-type', 'text/plain')
+        self.send_header('Content-Type', 'text/plain')
         self.send_header("Content-Length", str(content_length))
         self.end_headers()
 

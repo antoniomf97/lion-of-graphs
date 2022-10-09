@@ -1,5 +1,6 @@
-from intmodules import logger, parse_request, preprocess_data
+from intmodules import logger, validate_data
 from fitter import fitter
+from parser import parse_request
 
 
 def service(request):
@@ -9,10 +10,10 @@ def service(request):
     request = parse_request(request)
 
     logger.debug("Preprocessing input data.")
-    data = preprocess_data(request["data"])
+    data = validate_data(request["data"])
 
     logger.debug("Calling fitter engine for given data.")
-    fitter(data)
+    response = fitter(data)
 
-    logger.debug("Returning encoded json data.")
-    return data.to_json().encode()
+    logger.debug("Returning image as BytesIO.")
+    return response
