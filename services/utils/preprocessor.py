@@ -1,4 +1,4 @@
-from intmodules.exceptions import InvalidRequestError
+from services.utils.exceptions import InvalidRequestError
 
 
 def validate_data(dataframe):

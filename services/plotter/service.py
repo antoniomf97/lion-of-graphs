@@ -1,4 +1,4 @@
-from intmodules import logger, validate_data
+from services.utils import logger, validate_data
 from plotter import plotter
 from parser import parse_request
 

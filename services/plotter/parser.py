@@ -2,7 +2,7 @@ from json import loads
 from pandas import read_csv
 from io import StringIO
 from jsonschema import validate
-from intmodules import InvalidRequestError
+from services.utils import InvalidRequestError
 
 
 options_schema = {
