@@ -24,8 +24,8 @@ class PlotterHandler(MPBRequestHandler):
         except (InvalidRequestError, ValidationError, ValueError) as e:
             response = "Bad Request: " + str(e)
             self._return_400(response)
-        except Exception:
-            response = "Oops: something went wrong"
+        except Exception as e:
+            response = "Oops: something went wrong...\n" + str(e)
             self._return_500(response)
         else:
             self.send_response(200)

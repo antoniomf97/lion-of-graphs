@@ -19,13 +19,13 @@ class MPBRequestHandler(SimpleHTTPRequestHandler):
         """Sends a response with status code 405 - Method Not Allowed"""
         self.send_response(405)
         self._set_headers(len(message))
-        self.wfile.write(bytes(message))
+        self.wfile.write(message.encode())
 
     def _return_500(self, message: str = "Internal Server Error") -> None:
         """Sends a response with status code 500 - Internal Server Error"""
         self.send_response(500)
         self._set_headers(len(message))
-        self.wfile.write(bytes(message))
+        self.wfile.write(message.encode())
 
     """Define the default answer for all methods"""
     do_GET = _return_405
