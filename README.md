@@ -55,5 +55,34 @@ The following policies are meant to guide collaborators in their activities, est
 
 
 ## Contributors
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=MrToino&show_icons=true&theme=react)
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=luisferreira32&show_icons=true&theme=react)
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/luisferreira32">
+          <img src="https://github.com/luisferreira32.png" width="100px" style="border-radius:100%"/>
+          <br /><sub><b>luisferreira32</b></sub><br />
+        </a>
+        <a href="https://www.linkedin.com/in/lu%C3%ADs-morgado-ferreira-90a558142/" title="LinkedIn">
+        <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/linkedin.png" width="20" style="margin-top:10px"/>
+        </a>
+        <a href="https://discord.com/users/279263718486048768" title="Discord">
+        <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/discord.png" width="20" style="margin-top:10px"/>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/MrToino">
+          <img src="https://github.com/MrToino.png" width="100px;" style="border-radius:100%"/>
+          <br /><sub><b>Mr Toino</b></sub><br />
+        </a>
+        <a href="https://www.linkedin.com/in/ant%C3%B3nio-medeiros-fernandes/" title="LinkedIn">
+        <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/linkedin.png" width="20" style="margin-top:10px"/>
+        </a>
+        <a href="https://discord.com/users/318061313374814219" title="Discord">
+        <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/discord.png" width="20" style="margin-top:10px"/>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
