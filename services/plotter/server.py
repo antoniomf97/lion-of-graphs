@@ -5,7 +5,7 @@ from jsonschema.exceptions import ValidationError
 
 from service import service
 
-from utils.server_handler import MPBRequestHandler  # config_logger, logger,
+from utils.server_handler import MPBRequestHandler, ThreadedHTTPServer  # config_logger, logger,
 from utils.exceptions import InvalidRequestError
 
 
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     hostName = os.getenv('SERVER_HOSTNAME', 'localhost')
     serverPort = int(os.getenv('SERVER_PORT', 8080))
 
-    webServer = HTTPServer((hostName, serverPort), PlotterHandler)
+    webServer = ThreadedHTTPServer((hostName, serverPort), PlotterHandler)
     print("Plotter server started at http://{}:{}".format(hostName, serverPort))
     # logger.debug("Plotter server started at http://{}:{}".format(hostName, serverPort))
 
