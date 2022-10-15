@@ -1,9 +1,10 @@
-from json import loads
-from pandas import read_csv
 from io import StringIO
-from jsonschema import validate
-from services.utils import InvalidRequestError
+from json import loads
 
+from jsonschema import validate
+from pandas import read_csv
+
+from services.utils import InvalidRequestError
 
 options_schema = {
     "type": "object",

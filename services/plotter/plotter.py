@@ -1,32 +1,29 @@
 from io import BytesIO
-from services.utils import logger
-import matplotlib.pyplot as plt
 
+import matplotlib.pyplot as plt
 import numpy as np
+
+from services.utils import logger
 
 
 def plotter(data, configs):
     # logger.debug("Building plot for given data.")
-    fig = plt.figure()
+    plt.figure()
 
-    plt.plot(data)
+    plt.plot(data.index.values, data[data.keys()[0]].values, color=configs["color"])
 
     set_configurations(configs)
-
-    # logger.debug("Show resulting plot.")
-    # plt.show()
 
     buf = BytesIO()
     plt.savefig(buf, format='png')
     return buf
-    # return Image.fromarray(np.asarray(canvas.buffer_rgba()))
 
 
 def set_configurations(configs):
-    plt.title = configs["title"]
-    # plt.xlabel = configs["xlabel"]
-    # plt.ylabel = configs["ylabel"]
-    # plt.grid = True
+    plt.title(label=configs["title"]["label"], color=configs["title"]["color"], fontsize=configs["title"]["fontsize"])
+    plt.xlabel(xlabel=configs["xlabel"]["xlabel"], loc=configs["xlabel"]["loc"])
+    plt.ylabel(ylabel=configs["ylabel"]["ylabel"], loc=configs["ylabel"]["loc"])
+    plt.grid(visible=configs["grid"]["visible"], axis=configs["grid"]["axis"])
 
 
 def plotter_for_fitter(data_x, data_y, function):

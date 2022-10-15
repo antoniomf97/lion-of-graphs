@@ -14,7 +14,13 @@ type FitterTabProps = {
 const FitterTab: React.FC<FitterTabProps> = ({ submitter, setPlot }) => {
   const [dataFileName, setDataFileName] = useState<File>();
   const [fittingFunc, setFittingFunc] = useState("y = x + 1");
-  const [options] = useState<options>({title: ""});
+  const [options] = useState<options>({
+    color: "#0000FF",
+    title: {label: "Title", color: "#666666", fontsize: 12},
+    xlabel: {xlabel: "x", loc: "center"},
+    ylabel: {ylabel: "y", loc: "center"},
+    grid: {visible: true, axis: "both"}
+  });
 
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {

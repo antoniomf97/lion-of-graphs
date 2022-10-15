@@ -1,9 +1,11 @@
 import os
-from service import service
 from http.server import HTTPServer
+
+from jsonschema.exceptions import ValidationError
+from service import service
+
 from services.utils import MPBRequestHandler  # config_logger, logger,
 from services.utils import InvalidRequestError
-from jsonschema.exceptions import ValidationError
 
 
 class FitterHandler(MPBRequestHandler):

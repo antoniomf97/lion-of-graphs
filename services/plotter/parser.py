@@ -1,22 +1,13 @@
-from json import loads
-from pandas import read_csv
 from io import StringIO
+from json import loads
+
 from jsonschema import validate
+from pandas import read_csv
+
 from services.utils import InvalidRequestError
 
 
-options_schema = {
-    "type": "object",
-    "properties": {
-        "title": {
-            "type": "string"
-        }
-    },
-    "requied": []
-}
-
-
-def parse_request(request: tuple) -> dict:
+def parse_request(request: tuple, options_schema: dict) -> dict:
     """Validate and parses request into dict"""
 
     if len(request) == 2:

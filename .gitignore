@@ -75,3 +75,6 @@ bower_components
 psd
 thumb
 sketch
+
+# Pre commit configuration
+.pre-commit-config.yaml

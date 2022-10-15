@@ -13,7 +13,13 @@ type PlotterTabProps = {
 
 const PlotterTab: React.FC<PlotterTabProps> = ({ submitter, setPlot }) => {
   const [dataFileName, setDataFileName] = useState<File>();
-  const [options] = useState<options>({title: ""});
+  const [options] = useState<options>({
+    color: "#0000FF",
+    title: {label: "Title", color: "#666666", fontsize: 12},
+    xlabel: {xlabel: "x", loc: "center"},
+    ylabel: {ylabel: "y", loc: "center"},
+    grid: {visible: true, axis: "both"}
+  });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
