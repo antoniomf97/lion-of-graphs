@@ -1,9 +1,15 @@
 import os
-from service import service
 from http.server import HTTPServer
+from json import load
+from jsonschema.exceptions import ValidationError
+from service import service
+
 from services.utils import MPBRequestHandler  # config_logger, logger,
 from services.utils import InvalidRequestError
-from jsonschema.exceptions import ValidationError
+
+
+with open(os.path.join(".", "services", "plotter", "schema.json")) as f:
+    PLOTTER_OPTIONS_SCHEMA = load(f)
 
 
 class PlotterHandler(MPBRequestHandler):
@@ -14,7 +20,7 @@ class PlotterHandler(MPBRequestHandler):
 
         try:
             parsed_request = self._multipart_parser(request)
-            response = service(parsed_request)
+            response = service(parsed_request, PLOTTER_OPTIONS_SCHEMA)
         except (InvalidRequestError, ValidationError, ValueError) as e:
             response = "Bad Request: " + str(e)
             self._return_400(response)

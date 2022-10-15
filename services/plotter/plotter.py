@@ -1,13 +1,14 @@
 from io import BytesIO
-from services.utils import logger
-import matplotlib.pyplot as plt
 
+import matplotlib.pyplot as plt
 import numpy as np
+
+from services.utils import logger
 
 
 def plotter(data, configs):
     # logger.debug("Building plot for given data.")
-    fig = plt.figure()
+    plt.figure()
 
     plt.plot(data.index.values, data[data.keys()[0]].values, color=configs["color"])
 
@@ -16,7 +17,6 @@ def plotter(data, configs):
     buf = BytesIO()
     plt.savefig(buf, format='png')
     return buf
-    # return Image.fromarray(np.asarray(canvas.buffer_rgba()))
 
 
 def set_configurations(configs):

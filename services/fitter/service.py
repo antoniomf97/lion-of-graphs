@@ -1,6 +1,8 @@
-from services.utils import logger, validate_data
-from fitter import fitter
 from parser import parse_request
+
+from fitter import fitter
+
+from services.utils import logger, validate_data
 
 
 def service(request):

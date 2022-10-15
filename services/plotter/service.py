@@ -1,13 +1,15 @@
-from services.utils import logger, validate_data
-from plotter import plotter
 from parser import parse_request
 
+from plotter import plotter
 
-def service(request):
+from services.utils import logger, validate_data
+
+
+def service(request, options_schema):
     """Triggers the plotter engine for the given request"""
 
     logger.debug("Validating request in terms of format and JSON schema.")
-    request = parse_request(request)
+    request = parse_request(request, options_schema)
 
     logger.debug("Preprocessing input data.")
     data = validate_data(request["data"])

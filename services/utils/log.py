@@ -1,7 +1,6 @@
-import os
 import logging as log
 import logging.config
-
+import os
 
 log_path = os.path.join("..", "logs", "")
 logger = logging.getLogger()

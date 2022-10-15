@@ -1,11 +1,13 @@
-from json import loads, load
-from pandas import read_csv
 from io import StringIO
+from json import loads
+
 from jsonschema import validate
+from pandas import read_csv
+
 from services.utils import InvalidRequestError
 
 
-def parse_request(request: tuple) -> dict:
+def parse_request(request: tuple, options_schema: dict) -> dict:
     """Validate and parses request into dict"""
 
     if len(request) == 2:
@@ -16,8 +18,6 @@ def parse_request(request: tuple) -> dict:
     data = read_csv(StringIO(file_part), sep=",", index_col=0)
     options = loads(options_part)
 
-    with open(".\services\plotter\schema.json") as f:
-        options_schema = load(f)
     validate(instance=options, schema=options_schema)
 
     return {"data": data, "options": options}
