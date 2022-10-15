@@ -15,7 +15,13 @@ class TestStringMethods(unittest.TestCase):
             plotter_url,
             files={
                 'file': ('test.csv', data),
-                'options': '{"title": "abc"}'
+                'options': '''{
+                    "color": "#0000FF",
+                    "title": {"label": "Title", "color": "#666666", "fontsize": 12},
+                    "xlabel": {"xlabel": "x", "loc": "center"},
+                    "ylabel": {"ylabel": "y", "loc": "center"},
+                    "grid": {"visible": true, "axis": "both"}
+                }'''
             }
         )
 

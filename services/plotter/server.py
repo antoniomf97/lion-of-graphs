@@ -8,7 +8,7 @@ from services.utils import MPBRequestHandler  # config_logger, logger,
 from services.utils import InvalidRequestError
 
 
-with open(os.path.join(".", "services", "plotter", "schema.json")) as f:
+with open(os.path.join(".", "schema.json")) as f:
     PLOTTER_OPTIONS_SCHEMA = load(f)
 
 
