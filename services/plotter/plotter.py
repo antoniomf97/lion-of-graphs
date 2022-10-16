@@ -1,42 +1,44 @@
 from io import BytesIO
+from uuid import uuid4
 
-import matplotlib.pyplot as plt
-import numpy as np
+from matplotlib.pyplot import figure
+from matplotlib.figure import Figure
+from matplotlib.axes import Axes
+from pandas import DataFrame
 
-from utils.log import logger
 
+def plotter(data: DataFrame, configs: dict):
+    uid = uuid4()
+    fig: Figure = figure(uid)
+    axes: Axes = fig.add_axes([.1, .1, .8, .8])
 
-def plotter(data, configs):
-    # logger.debug("Building plot for given data.")
-    plt.figure()
-
-    plt.plot(data.index.values, data[data.keys()[0]].values, color=configs["color"])
-
-    set_configurations(configs)
+    axes.plot(data.index.values, data[data.keys()[0]].values, color=configs["color"])
+    set_configurations(axes, configs)
 
     buf = BytesIO()
-    plt.savefig(buf, format='png')
+    fig.savefig(buf, format='png')
     return buf
 
 
-def set_configurations(configs):
-    plt.title(label=configs["title"]["label"], color=configs["title"]["color"], fontsize=configs["title"]["fontsize"])
-    plt.xlabel(xlabel=configs["xlabel"]["xlabel"], loc=configs["xlabel"]["loc"])
-    plt.ylabel(ylabel=configs["ylabel"]["ylabel"], loc=configs["ylabel"]["loc"])
-    plt.grid(visible=configs["grid"]["visible"], axis=configs["grid"]["axis"])
+def set_configurations(axes: Axes, configs: dict):
+    axes.set_title(label=configs["title"]["label"], color=configs["title"]["color"], fontsize=configs["title"]["fontsize"])
+    axes.set_xlabel(xlabel=configs["xlabel"]["xlabel"], loc=configs["xlabel"]["loc"])
+    axes.set_ylabel(ylabel=configs["ylabel"]["ylabel"], loc=configs["ylabel"]["loc"])
+    axes.grid(visible=configs["grid"]["visible"], axis=configs["grid"]["axis"])
 
 
-def plotter_for_fitter(data_x, data_y, function):
-    increment = (max(data_x) - min(data_x)) / 100
-    x = np.arange(min(data_x), max(data_x) + increment, increment)
-
-    logger.debug("Building plot for given data.")
-    plt.plot(data_x, data_y, 'o', label='data')
-    plt.plot(x, function(x), '-', label='fit')
-    plt.legend()
-
-    logger.debug("Show resulting plot.")
-
-    buf = BytesIO()
-    plt.savefig(buf, format='png')
-    return buf
+# This should not exist as a function - fix it later
+# def plotter_for_fitter(data_x, data_y, function):
+#     increment = (max(data_x) - min(data_x)) / 100
+#     x = np.arange(min(data_x), max(data_x) + increment, increment)
+#
+#     logger.debug("Building plot for given data.")
+#     plt.plot(data_x, data_y, 'o', label='data')
+#     plt.plot(x, function(x), '-', label='fit')
+#     plt.legend()
+#
+#     logger.debug("Show resulting plot.")
+#
+#     buf = BytesIO()
+#     plt.savefig(buf, format='png')
+#     return buf

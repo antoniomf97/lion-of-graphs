@@ -1,4 +1,6 @@
 import os
+import matplotlib
+
 from json import load
 from jsonschema.exceptions import ValidationError
 
@@ -7,6 +9,10 @@ from service import service
 from utils.server_handler import MPBRequestHandler, ThreadedHTTPServer  # config_logger, logger,
 from utils.exceptions import InvalidRequestError
 
+# To ensure we can plot in different threads
+# https://matplotlib.org/stable/users/faq/howto_faq.html#work-with-threads
+# https://matplotlib.org/stable/users/explain/backends.html#selecting-a-backend
+matplotlib.use("agg")
 
 with open(os.path.join(".", "schema.json")) as f:
     PLOTTER_OPTIONS_SCHEMA = load(f)
