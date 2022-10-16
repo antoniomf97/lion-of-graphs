@@ -3,7 +3,7 @@ from io import BytesIO
 import matplotlib.pyplot as plt
 import numpy as np
 
-from services.utils import logger
+from utils.log import logger
 
 
 def plotter(data, configs):

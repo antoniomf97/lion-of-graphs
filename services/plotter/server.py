@@ -2,10 +2,11 @@ import os
 from http.server import HTTPServer
 from json import load
 from jsonschema.exceptions import ValidationError
+
 from service import service
 
-from services.utils import MPBRequestHandler  # config_logger, logger,
-from services.utils import InvalidRequestError
+from utils.server_handler import MPBRequestHandler  # config_logger, logger,
+from utils.exceptions import InvalidRequestError
 
 
 with open(os.path.join(".", "schema.json")) as f:
