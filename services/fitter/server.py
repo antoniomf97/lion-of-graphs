@@ -4,8 +4,8 @@ from http.server import HTTPServer
 from jsonschema.exceptions import ValidationError
 from service import service
 
-from services.utils import MPBRequestHandler  # config_logger, logger,
-from services.utils import InvalidRequestError
+from utils.server_handler import MPBRequestHandler  # config_logger, logger,
+from utils.exceptions import InvalidRequestError
 
 
 class FitterHandler(MPBRequestHandler):
