@@ -1,5 +1,4 @@
 import os
-from http.server import HTTPServer
 from json import load
 from jsonschema.exceptions import ValidationError
 
