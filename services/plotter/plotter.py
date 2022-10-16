@@ -7,7 +7,7 @@ from matplotlib.axes import Axes
 from pandas import DataFrame
 
 
-def plotter(data: DataFrame, configs: dict):
+def plotter(data: DataFrame, configs: dict) -> BytesIO:
     uid = uuid4()
     fig: Figure = figure(uid)
     axes: Axes = fig.add_axes([.1, .1, .8, .8])
@@ -20,7 +20,7 @@ def plotter(data: DataFrame, configs: dict):
     return buf
 
 
-def set_configurations(axes: Axes, configs: dict):
+def set_configurations(axes: Axes, configs: dict) -> None:
     axes.set_title(label=configs["title"]["label"], color=configs["title"]["color"], fontsize=configs["title"]["fontsize"])
     axes.set_xlabel(xlabel=configs["xlabel"]["xlabel"], loc=configs["xlabel"]["loc"])
     axes.set_ylabel(ylabel=configs["ylabel"]["ylabel"], loc=configs["ylabel"]["loc"])
