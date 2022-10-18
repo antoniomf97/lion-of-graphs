@@ -1,5 +1,6 @@
-from http.server import SimpleHTTPRequestHandler
+from http.server import SimpleHTTPRequestHandler, HTTPServer
 from requests_toolbelt.multipart import decoder
+from socketserver import ThreadingMixIn
 
 
 class MPBRequestHandler(SimpleHTTPRequestHandler):
@@ -42,3 +43,7 @@ class MPBRequestHandler(SimpleHTTPRequestHandler):
         """Parses multipart request into parts"""
         message = decoder.MultipartDecoder(request, self.headers.get("content-type"))
         return message.parts
+
+
+class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
+    """Handle http requests in a separate thread."""

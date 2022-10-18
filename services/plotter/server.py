@@ -1,13 +1,18 @@
 import os
-from http.server import HTTPServer
+import matplotlib
+
 from json import load
 from jsonschema.exceptions import ValidationError
 
 from service import service
 
-from utils.server_handler import MPBRequestHandler  # config_logger, logger,
+from utils.server_handler import MPBRequestHandler, ThreadedHTTPServer  # config_logger, logger,
 from utils.exceptions import InvalidRequestError
 
+# To ensure we can plot in different threads
+# https://matplotlib.org/stable/users/faq/howto_faq.html#work-with-threads
+# https://matplotlib.org/stable/users/explain/backends.html#selecting-a-backend
+matplotlib.use("agg")
 
 with open(os.path.join(".", "schema.json")) as f:
     PLOTTER_OPTIONS_SCHEMA = load(f)
@@ -45,7 +50,7 @@ if __name__ == "__main__":
     hostName = os.getenv('SERVER_HOSTNAME', 'localhost')
     serverPort = int(os.getenv('SERVER_PORT', 8080))
 
-    webServer = HTTPServer((hostName, serverPort), PlotterHandler)
+    webServer = ThreadedHTTPServer((hostName, serverPort), PlotterHandler)
     print("Plotter server started at http://{}:{}".format(hostName, serverPort))
     # logger.debug("Plotter server started at http://{}:{}".format(hostName, serverPort))
 
