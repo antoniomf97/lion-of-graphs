@@ -1,7 +1,7 @@
 import unittest
 import requests
 
-plotter_url = "http://localhost:8080"
+plotter_url = "http://localhost:8000"
 
 
 class TestStringMethods(unittest.TestCase):
@@ -14,8 +14,8 @@ class TestStringMethods(unittest.TestCase):
         response = requests.post(
             plotter_url,
             files={
-                'file': ('test.csv', data),
-                'options': '''{
+                'rawData': ('test.csv', data),
+                'rawOptions': '''{
                     "color": "#0000FF",
                     "title": {"label": "Title", "color": "#666666", "fontsize": 12},
                     "xlabel": {"xlabel": "x", "loc": "center"},
