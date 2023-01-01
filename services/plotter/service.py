@@ -1,22 +1,17 @@
-from parser import parse_request
-
 from plotter import plotter
 
 from utils.log import logger
 from utils.preprocessor import validate_data
 
 
-def service(request, options_schema):
+def service(data, options) -> bytes:
     """Triggers the plotter engine for the given request"""
 
-    logger.debug("Validating request in terms of format and JSON schema.")
-    request = parse_request(request, options_schema)
-
     logger.debug("Preprocessing input data.")
-    data = validate_data(request["data"])
+    data = validate_data(data)
 
     logger.debug("Calling plotter engine for given data.")
-    response = plotter(data, request["options"])
+    response = plotter(data, options)
 
-    logger.debug("Returning image as BytesIO.")
+    logger.debug("Returning image as bytes.")
     return response

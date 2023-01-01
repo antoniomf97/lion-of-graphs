@@ -1,4 +1,4 @@
-from io import StringIO
+from io import BytesIO
 from json import loads
 
 from jsonschema import validate
@@ -7,17 +7,15 @@ from pandas import read_csv
 from utils.exceptions import InvalidRequestError
 
 
-def parse_request(request: tuple, options_schema: dict) -> dict:
+def parse_request(rawData: bytes, rawOptions: str, options_schema: dict) -> tuple:
     """Validate and parses request into dict"""
 
-    if len(request) == 2:
-        file_part, options_part = (part.content.decode(part.encoding) for part in request)
-    else:
+    if rawData is None or rawOptions is None:
         raise InvalidRequestError("Expected two parts in multipart/form-data submit.")
 
-    data = read_csv(StringIO(file_part), sep=",", index_col=0)
-    options = loads(options_part)
+    data = read_csv(BytesIO(rawData), sep=",", index_col=0)
+    options = loads(rawOptions)
 
     validate(instance=options, schema=options_schema)
 
-    return {"data": data, "options": options}
+    return data, options
