@@ -13,5 +13,5 @@ def service(data, options) -> bytes:
     logger.debug("Calling plotter engine for given data.")
     response = plotter(data, options)
 
-    logger.debug("Returning image as BytesIO.")
-    return response.read()
+    logger.debug("Returning image as bytes.")
+    return response
