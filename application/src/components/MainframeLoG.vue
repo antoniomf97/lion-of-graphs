@@ -12,7 +12,7 @@ import ContentLoG from './ContentLoG.vue';
 
 
 export default defineComponent({
-    name: 'App',
+    name: 'MainframeLoG',
     components: { HeadersLoG, ContentLoG }
 });
 </script>

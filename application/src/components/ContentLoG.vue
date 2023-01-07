@@ -9,11 +9,13 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import WorkspacePlot from './WorkspacePlot.vue';
 
-export default {
-  components: { WorkspacePlot } ,
-}
+export default defineComponent({
+    name: 'ContentLoG',
+    components: { WorkspacePlot } ,
+});
 </script>
 
 <style>
