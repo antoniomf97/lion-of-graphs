@@ -1,8 +1,0 @@
-{
-  "short_name": "MPBA",
-  "name": "Mat Plot Builder minimalistic app",
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
-}
