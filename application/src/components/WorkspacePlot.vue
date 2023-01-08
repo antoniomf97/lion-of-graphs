@@ -39,7 +39,12 @@ export default defineComponent({
             formData.append('rawData', this.file);
         
             const options = JSON.stringify({
-                title: 'This is the title',
+                color: "#0000FF",
+                title: {
+                    label: "This is the title",
+                    color: "#666666",
+                    fontsize: 24
+                },
                 xlabel: 'X Label',
                 ylabel: 'Y Label'
             });

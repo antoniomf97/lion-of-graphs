@@ -1,10 +1,13 @@
+from pandas import DataFrame
+from services.models.options import Options
+
 from plotter import plotter
 
 from services.utils.log import logger
 from services.utils.preprocessor import validate_dataframe
 
 
-def service(data, options) -> bytes:
+def service(data: DataFrame, options: Options) -> bytes:
     """Triggers the plotter engine for the given request"""
 
     logger.debug("Preprocessing input data.")

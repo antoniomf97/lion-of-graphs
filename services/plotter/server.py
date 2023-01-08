@@ -5,9 +5,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from decouple import config, Csv
 from pydantic import Json
+from pandas import read_csv
 
 from service import service
-from services.models.models import Options
+from services.models.options import Options
 from services.utils.exceptions import InvalidRequestError
 
 # To ensure we can plot in different threads
@@ -47,13 +48,13 @@ def plot_request(
     rawOptions: Json[Options] = Form(...),
 ):
     try:
-        print(rawData)
-        plot_img = service(rawData, rawOptions)
+        data = read_csv(rawData.file, sep=",", index_col=0)
+        plot_img = service(data, rawOptions)
     except (InvalidRequestError, ValueError) as e:
         raise HTTPException(status_code=400, detail="Bad request: " + str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail="Oops my bad: " + str(e))
-    return Response('plot_img', media_type="image/png")
+    return Response(plot_img, media_type="image/png")
 
 
 def run():
