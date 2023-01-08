@@ -1,6 +1,6 @@
 from pandas import DataFrame
 
-from utils.exceptions import InvalidRequestError
+from services.utils.exceptions import InvalidRequestError
 
 
 def validate_data(dataframe: DataFrame) -> DataFrame:

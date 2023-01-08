@@ -3,11 +3,12 @@ from json import loads
 
 from jsonschema import validate
 from pandas import read_csv
+from fastapi import UploadFile
 
-from utils.exceptions import InvalidRequestError
+from services.utils.exceptions import InvalidRequestError
 
 
-def parse_request(rawData: bytes, rawOptions: str, options_schema: dict) -> tuple:
+def parse_request(rawData: UploadFile, rawOptions: str, options_schema: dict) -> tuple:
     """Validate and parses request into dict"""
 
     if rawData is None or rawOptions is None:

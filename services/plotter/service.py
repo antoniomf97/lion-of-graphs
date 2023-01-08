@@ -1,7 +1,7 @@
 from plotter import plotter
 
-from utils.log import logger
-from utils.preprocessor import validate_data
+from services.utils.log import logger
+from services.utils.preprocessor import validate_data
 
 
 def service(data, options) -> bytes:

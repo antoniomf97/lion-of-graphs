@@ -20,7 +20,9 @@ def fitter(data):
     plotter_for_fitter(xdata, ydata, lambda x: LinearRegression(x, *parameters_l))
 
     # logger.debug("Building plot for quadratic regression.")
-    response = plotter_for_fitter(xdata, ydata, lambda x: QuadraticRegression(x, *parameters_q))
+    response = plotter_for_fitter(
+        xdata, ydata, lambda x: QuadraticRegression(x, *parameters_q)
+    )
 
     # logger.debug("Show resulting plot.")
     # plt.show()
@@ -43,8 +45,8 @@ def test_plot_linear(xdata, ydata, parameters):
     x = np.arange(min(xdata), max(xdata) + increment, increment)
 
     fit_y = LinearRegression(x, parameters[0], parameters[1])
-    plt.plot(xdata, ydata, 'o', label='data')
-    plt.plot(x, fit_y, '-', label='fit')
+    plt.plot(xdata, ydata, "o", label="data")
+    plt.plot(x, fit_y, "-", label="fit")
     plt.legend()
 
 
@@ -54,6 +56,6 @@ def test_plot_quadratic(xdata, ydata, parameters):
     x = np.arange(min(xdata), max(xdata) + increment, increment)
 
     fit_y = QuadraticRegression(x, parameters[0], parameters[1], parameters[2])
-    plt.plot(xdata, ydata, 'o', label='data')
-    plt.plot(x, fit_y, '-', label='fit')
+    plt.plot(xdata, ydata, "o", label="data")
+    plt.plot(x, fit_y, "-", label="fit")
     plt.legend()
