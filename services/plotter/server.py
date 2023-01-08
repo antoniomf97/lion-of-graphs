@@ -16,8 +16,6 @@ from services.utils.exceptions import InvalidRequestError
 # https://matplotlib.org/stable/users/explain/backends.html#selecting-a-backend
 matplotlib.use("agg")
 
-# with open(os.path.join(".", "plotter\\schema.json")) as f:
-#     PLOTTER_OPTIONS_SCHEMA = load(f)
 
 app = FastAPI()
 
