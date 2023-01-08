@@ -36,8 +36,15 @@ export default defineComponent({
                 return;
             }
 
-            formData.append('file', this.file);
-            
+            formData.append('rawData', this.file);
+        
+            const options = JSON.stringify({
+                title: 'This is the title',
+                xlabel: 'X Label',
+                ylabel: 'Y Label'
+            });
+            formData.append('rawOptions', options);
+
             axios.post('http://localhost:8081/plotter',
                 formData,
                 {
