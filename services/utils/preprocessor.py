@@ -1,9 +1,9 @@
 from pandas import DataFrame
 
-from utils.exceptions import InvalidRequestError
+from services.utils.exceptions import InvalidRequestError
 
 
-def validate_data(dataframe: DataFrame) -> DataFrame:
+def validate_dataframe(dataframe: DataFrame) -> DataFrame:
     """Validates input data"""
     data_nulls = dataframe.isnull()
     if data_nulls.any().any():

@@ -8,12 +8,8 @@ from utils.exceptions import InvalidRequestError
 
 options_schema = {
     "type": "object",
-    "properties": {
-        "title": {
-            "type": "string"
-        }
-    },
-    "requied": []
+    "properties": {"title": {"type": "string"}},
+    "requied": [],
 }
 
 
