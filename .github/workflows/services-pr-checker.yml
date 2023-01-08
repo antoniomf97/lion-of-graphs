@@ -5,8 +5,11 @@ on:
       - opened
       - edited
       - reopened
+      - synchronize
     branches:
       - "master"
+    paths:
+      - services/**
 jobs:
   review-service-standards:
     runs-on: ubuntu-latest
