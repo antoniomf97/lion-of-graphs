@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.optimize import curve_fit
 
-from services.plotter.plotter import plotter_for_fitter
+from ..plotter.service import plotter_for_fitter
 
 
 def fitter(data):

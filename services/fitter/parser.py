@@ -4,7 +4,7 @@ from json import loads
 from jsonschema import validate
 from pandas import read_csv
 
-from utils.exceptions import InvalidRequestError
+from .._utils.exceptions import InvalidRequestError
 
 options_schema = {
     "type": "object",

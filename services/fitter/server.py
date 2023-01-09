@@ -2,10 +2,10 @@ from fastapi import FastAPI, File, Form, HTTPException
 from fastapi.responses import Response
 from jsonschema.exceptions import ValidationError
 
-from service import service
-from parser import parse_request
+from .service import service
+from .parser import parse_request
 
-from utils.exceptions import InvalidRequestError
+from .._utils.exceptions import InvalidRequestError
 
 
 app = FastAPI()

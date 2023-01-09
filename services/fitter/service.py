@@ -2,8 +2,8 @@ from parser import parse_request
 
 from fitter import fitter
 
-from utils.log import logger
-from utils.preprocessor import validate_data
+from .._utils.log import logger
+from .._utils.preprocessor import validate_data
 
 
 def service(request):
