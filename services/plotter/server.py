@@ -1,9 +1,6 @@
-import uvicorn
 import matplotlib
-from fastapi import APIRouter, FastAPI, File, Form, UploadFile, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import APIRouter, File, Form, UploadFile, HTTPException
 from fastapi.responses import Response
-from decouple import config, Csv
 from pydantic import Json
 from pandas import read_csv
 
