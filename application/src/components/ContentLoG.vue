@@ -14,7 +14,7 @@ import WorkspacePlot from './WorkspacePlot.vue';
 
 export default defineComponent({
     name: 'ContentLoG',
-    components: { WorkspacePlot } ,
+    components: { WorkspacePlot} ,
 });
 </script>
 
@@ -35,7 +35,7 @@ export default defineComponent({
     display: flow-root;
 }
 
-.buttons-div {
+.tabs-div {
     display: flex;
     align-content: left;
     height: 50px;

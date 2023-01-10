@@ -3,24 +3,28 @@
         <label>Upload Data File
             <input type="file" @change="handleFileUpload( $event )"/>
         </label>
-        <!--<img src="../assets/test_plot.png" alt="Test Plot" class="plot-img">
+        <img src="../assets/base_plot.png" alt="Test Plot" class="plot-img">
         <FormConfig label="Title" defaultValue="This is the title"/>
         <FormConfig label="X Label" defaultValue="X"/>
-        <FormConfig label="Y Label" defaultValue="Y"/>-->
+        <FormConfig label="Y Label" defaultValue="Y"/>
         <button v-on:click="submitFiles()" class="build-button">Submit</button>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import FormConfig from './FormConfig.vue';
 import axios from 'axios';
 
 export default defineComponent({
     name: "UploadFile", 
-    components: {  },
+    components: { FormConfig },
     data(){
         return {
-            file : null as File | null
+            file : null as File | null,
+            title: 'This is the title' as string,
+            xlabel: 'X' as string,
+            ylabel: 'Y' as string,
         }
     },
     methods: {
@@ -76,13 +80,13 @@ export default defineComponent({
 
 .plot-img {
     margin: 0px;
-    width: 60%;
+    width: 50%;
     border-radius: 0px;
 }
 
 .build-button {
-    height: 30px;
-    width: 150px;
+    height: 7%;
+    width: 20%;
     border-radius: 5px;
     border: 0;
     margin: 10px;
