@@ -1,8 +1,11 @@
+import uvicorn
 import matplotlib
-from fastapi import APIRouter, File, Form, UploadFile, HTTPException
-from fastapi.responses import Response
+
 from pydantic import Json
 from pandas import read_csv
+from decouple import config, Csv
+from fastapi import FastAPI, APIRouter, File, Form, UploadFile, HTTPException
+from fastapi.responses import Response
 
 from .._models.options import Options
 from .._utils.exceptions import InvalidRequestError
@@ -40,3 +43,30 @@ def plotter_router():
         return Response(plot_img, media_type="image/png")
 
     return plotter_router
+
+
+def app():
+    app = FastAPI()
+
+    origins = [
+        "http://localhost:8080",
+    ]
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+    return app
+
+
+if __name__ == "__main__":
+    # .env file example:
+    # PLOTTER_SERVER=127.0.0.1,8081,debug
+    host, port, log_level = config("PLOTTER_SERVER", cast=Csv())
+    uvicorn.run(
+        "server:app", host=host, port=int(port), log_level=log_level, reload=True
+    )

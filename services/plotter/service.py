@@ -17,6 +17,13 @@ def service(data: DataFrame, options: Options) -> bytes:
     logger.debug("Preprocessing input data.")
     data = validate_dataframe(data)
 
+    logger.debug("Building plot for given inputs.")
+    plot = build_plot(data, options)
+
+    return plot
+
+
+def build_plot(data, options):
     uid = uuid4()
     fig: Figure = figure(uid)
     axes: Axes = fig.add_axes([0.1, 0.1, 0.8, 0.8])
@@ -26,6 +33,7 @@ def service(data: DataFrame, options: Options) -> bytes:
 
     buf = BytesIO()
     fig.savefig(buf, format="png")
+
     return buf.getvalue()
 
 

@@ -1,5 +1,3 @@
-from parser import parse_request
-
 from fitter import fitter
 
 from .._utils.log import logger
@@ -8,9 +6,6 @@ from .._utils.preprocessor import validate_data
 
 def service(request):
     """Triggers the fitter engine for the given request"""
-
-    logger.debug("Validating request in terms of format and JSON schema.")
-    request = parse_request(request)
 
     logger.debug("Preprocessing input data.")
     data = validate_data(request["data"])
