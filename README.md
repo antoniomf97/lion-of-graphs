@@ -1,4 +1,4 @@
-# MPB
+# Lion Of Graphics
 
 ![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg?logo=Python)
 ![GitHub top language](https://img.shields.io/github/languages/top/MrToino/MPB?logo=Python)
