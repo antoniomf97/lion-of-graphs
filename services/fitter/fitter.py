@@ -3,17 +3,21 @@ import numpy as np
 from scipy.optimize import curve_fit
 from pandas import DataFrame
 
-from ..plotter.service import plotter_for_fitter
-
 
 def fitter(data: DataFrame) -> tuple:
     """Fitter engine"""
     xdata, ydata = np.asarray(data.index.values), np.asarray(data[data.keys()[0]])
 
     # logger.debug("Computing quadratic regression for given data.")
-    parameters_q, covariance_q = curve_fit(QuadraticRegression, xdata, ydata)
+    parameters_q, covariance_q = curve_fit(LinearRegression, xdata, ydata)
 
-    return xdata, ydata, lambda x: QuadraticRegression(x, *parameters_q)
+    increment = (max(xdata) - min(xdata)) / 100  # resolution
+
+    x = np.arange(min(xdata), max(xdata) + increment, increment)
+
+    fit_y = LinearRegression(x, parameters_q[0], parameters_q[1])
+
+    return DataFrame(fit_y, index=x)
 
 
 def LinearRegression(x: float, m: float, c: float) -> float:

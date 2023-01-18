@@ -7,10 +7,10 @@ from decouple import config, Csv
 from fastapi import FastAPI, APIRouter, File, Form, UploadFile, HTTPException
 from fastapi.responses import Response
 
-from .service import service
-from .parser import parse_request
-
+from .._models.options import Options
 from .._utils.exceptions import InvalidRequestError
+
+from .service import service
 
 
 def fitter_router() -> APIRouter:
@@ -25,8 +25,8 @@ def fitter_router() -> APIRouter:
         response_class=Response,
     )
     def fit_request(
-        rawData: bytes = File(),
-        rawOptions: bytes = File(),
+        rawData: UploadFile = File(...),
+        rawOptions: Json[Options] = Form(...),
         rawFunc: str = Form(),
     ):
         try:
@@ -37,7 +37,7 @@ def fitter_router() -> APIRouter:
         except Exception as e:
             raise HTTPException(status_code=500, detail="Oops my bad: " + str(e))
         return Response(plot_img, media_type="image/png")
-    
+
     return fitter_router
 
 

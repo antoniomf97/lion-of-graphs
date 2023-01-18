@@ -60,7 +60,7 @@ export default defineComponent({
             }
             else if(service == "fitter") {
                 const func = "$f(x) = x^2$";
-                formData.append('rawFunction', func);
+                formData.append('rawFunc', func);
                 
                 endpoint = 'http://localhost:8081/fitter'
             }
