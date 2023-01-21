@@ -7,10 +7,13 @@
 ![GitHub](https://img.shields.io/github/license/MrToino/MPB)
 
 
-(under construction)
+## Project Description
 
-## Project Descriptions
-  (under construction)
+Lion Of Graphics is an application that aims to generate graphic != graph. 
+
+  for plotter and fitter 
+
+🚧 under construction 🚧
 
 ## Project Structure
 
