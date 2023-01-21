@@ -1,17 +1,10 @@
 <template>
     <div class="workspace-plot-div">
-        <div>
-            <label>Upload Data File
-                <input type="file" @change="handleFileUpload( $event )"/>
-            </label>
-            <button v-on:click="submitFiles('plotter')" class="build-button">Submit</button>
-        </div>
-        <div>
-            <label>Upload Data File
-                <input type="file" @change="handleFileUpload( $event )"/>
-            </label>
-            <button v-on:click="submitFiles('fitter')" class="build-button">Submit</button>
-        </div>
+        <label>Upload Data File
+            <input type="file" @change="handleFileUpload( $event )"/>
+        </label>
+        <button v-on:click="submitFiles('plotter')" class="build-button">Submit Plotter</button>
+        <button v-on:click="submitFiles('fitter')" class="build-button">Submit Fitter</button>
     </div>
 </template>
 
@@ -54,22 +47,13 @@ export default defineComponent({
             });
             formData.append('rawOptions', options);
 
-            let endpoint = '';
-            if(service == "plotter"){
-                endpoint = 'http://localhost:8081/plotter'
-            }
-            else if(service == "fitter") {
+            if(service == "fitter") {
                 const func = "$f(x) = x^2$";
                 formData.append('rawFunc', func);
-                
-                endpoint = 'http://localhost:8081/fitter'
-            }
-            else {
-                console.log('No service was called.');
-                return;
             }
 
-            axios.post(endpoint,
+            const baseUrl = "http://localhost:8081/";
+            axios.post(baseUrl + service,
                 formData,
                 {
                     headers: {
