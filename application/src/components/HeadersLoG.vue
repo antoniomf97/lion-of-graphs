@@ -2,7 +2,7 @@
     <header class="log-header">
         <div class="logo-div">
             <img src="../assets/logo.png" alt="Vue logo" class="logo">
-            <h1 class="logo-text">Lion Of <br/> Graphics</h1>
+            <h1 class="logo-text">Lion Of <br/> Graphs</h1>
         </div>
     </header>
 </template>
