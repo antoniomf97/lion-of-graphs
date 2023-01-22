@@ -2,15 +2,15 @@
   <a href="https://github.com/MrToino/lion-of-graphs">
     <img src="assets/logo.png" alt="Logo" height="200">
   </a>
+  <br>
+  <h1 style="color:#A89B86;font-weight:bold;font-size:40px;">Lion Of Graphs</h1>
 </div>
 
-# Lion Of Graphs
 
-![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg?logo=Python)
-![GitHub top language](https://img.shields.io/github/languages/top/MrToino/lion-of-graphs?logo=Python)
-![GitHub repo file count](https://img.shields.io/github/directory-file-count/MrToino/lion-of-graphs)
-![GitHub last commit](https://img.shields.io/github/last-commit/MrToino/lion-of-graphs)
-![GitHub](https://img.shields.io/github/license/MrToino/lion-of-graphs)
+![Build](https://img.shields.io/github/actions/workflow/status/MrToino/lion-of-graphs/pr-checker.yml?label=Build&style=flat&logo=github)
+![GitHub top language](https://img.shields.io/github/languages/top/MrToino/lion-of-graphs?label=Python&style=flat&logo=Python)
+![GitHub last commit](https://img.shields.io/github/last-commit/MrToino/lion-of-graphs?label=Last%20Commit&style=flat)
+![GitHub](https://img.shields.io/github/license/MrToino/lion-of-graphs?label=License&style=flat&color=orange)
 
 
 
