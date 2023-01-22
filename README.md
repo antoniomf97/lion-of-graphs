@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/MrToino/lion-of-graphs">
     <img src="assets/logo.png" alt="Logo" height="200">
   </a>
 </div>
