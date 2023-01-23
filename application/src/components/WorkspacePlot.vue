@@ -3,11 +3,8 @@
         <label>Upload Data File
             <input type="file" @change="handleFileUpload( $event )"/>
         </label>
-        <!--<img src="../assets/test_plot.png" alt="Test Plot" class="plot-img">
-        <FormConfig label="Title" defaultValue="This is the title"/>
-        <FormConfig label="X Label" defaultValue="X"/>
-        <FormConfig label="Y Label" defaultValue="Y"/>-->
-        <button v-on:click="submitFiles()" class="build-button">Submit</button>
+        <button v-on:click="submitFiles('plotter')" class="build-button">Submit Plotter</button>
+        <button v-on:click="submitFiles('fitter')" class="build-button">Submit Fitter</button>
     </div>
 </template>
 
@@ -28,7 +25,7 @@ export default defineComponent({
             const target = (event.target as HTMLInputElement);
             this.file = target.files? target.files[0]: null;
         },
-        submitFiles() {
+        submitFiles(service: string) {
             const formData = new FormData();
 
             if (!this.file) {
@@ -50,7 +47,13 @@ export default defineComponent({
             });
             formData.append('rawOptions', options);
 
-            axios.post('http://localhost:8081/plotter',
+            if(service == "fitter") {
+                const func = "$f(x) = x^2$";
+                formData.append('rawFunc', func);
+            }
+
+            const baseUrl = "http://localhost:8081/";
+            axios.post(baseUrl + service,
                 formData,
                 {
                     headers: {
