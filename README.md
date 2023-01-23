@@ -2,10 +2,9 @@
   <a href="https://github.com/MrToino/lion-of-graphs">
     <img src="assets/logo.png" alt="Logo" height="200">
   </a>
-  <br>
-  <h1 style="color:#A89B86;font-weight:bold;font-size:40px;">Lion Of Graphs</h1>
 </div>
 
+# Lion Of Graphs
 
 ![Build](https://img.shields.io/github/actions/workflow/status/MrToino/lion-of-graphs/pr-checker.yml?label=Build&style=flat&logo=github)
 ![GitHub top language](https://img.shields.io/github/languages/top/MrToino/lion-of-graphs?label=Python&style=flat&logo=Python)
@@ -14,10 +13,11 @@
 
 
 
-## Table of Contents
+### Table of Contents
 
 <ol>
   <li><a href="#description">Description</a></li>
+  <li><a href="#contributing">Structure</a></li>
   <li><a href="#contributing">Contributing</a></li>
   <li><a href="#policies">Policies</a></li>
   <li><a href="#license">License</a></li>
@@ -27,7 +27,7 @@
 
 🚧 *under construction* 🚧
 
-# Description
+## Description
 
 The Lion Of Graphs is an application that aims to generate any kind of graphs, that can be highly configurated its the users.
 
@@ -46,20 +46,15 @@ It is currently divided into the following structure:
 
 🚧 *under construction* 🚧
 
-# Contributing
+## Contributing
 
-In this project, collaborators must be aware not only of the project policies but also of the applied methodology. In the following points, we will be going through the source-control branching model and the commiting terminology.
+Do you want to be part of this project or to join this community? 
+Contributions are always welcome! Please read the [contribution guidelines](./docs/CONTRIBUTING.md) first.
 
-🚧 *under construction* 🚧
-
-# Policies
-(example from template [here](https://betterscientificsoftware.github.io/A-Team-Tools/TeamPoliciesTemplate.html))
-
-The following policies are meant to guide collaborators in their activities, establishing expectations for ongoing work.
 
 🚧 *under construction* 🚧
 
-# Authors
+## Authors
 
 <table>
   <tbody>
@@ -92,11 +87,11 @@ The following policies are meant to guide collaborators in their activities, est
   </tbody>
 </table>
 
-# License
+## License
 
 [GNU General Public License](./LICENSE) © 2023. See source [reference](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
 
-# Acknowledgments
+## Acknowledgments
 
 🚧 *under construction* 🚧

@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from decouple import config, Csv
 
 from services.plotter.server import plotter_router
+
 # from services.example_service.server import example_router
 
 # To ensure we can plot in different threads
