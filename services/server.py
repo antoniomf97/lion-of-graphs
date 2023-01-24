@@ -1,37 +1,36 @@
 import uvicorn
-import matplotlib
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from decouple import config, Csv
 
 from services.plotter.server import plotter_router
+from services.fitter.server import fitter_router
+
 
 # from services.example_service.server import example_router
 
-# To ensure we can plot in different threads
-# https://matplotlib.org/stable/users/faq/howto_faq.html#work-with-threads
-# https://matplotlib.org/stable/users/explain/backends.html#selecting-a-backend
-matplotlib.use("agg")
 
+def app():
+    app = FastAPI()
 
-app = FastAPI()
+    origins = [
+        "http://localhost:8080",
+    ]
 
-origins = [
-    "http://localhost:8080",
-]
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
+    app.include_router(plotter_router())
+    app.include_router(fitter_router())
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+    return app
 
-app.include_router(plotter_router)
-# app.include_router(example_router)
 
 if __name__ == "__main__":
     # .env file example:
