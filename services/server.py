@@ -33,8 +33,6 @@ def app():
 
 
 if __name__ == "__main__":
-    # .env file example:
-    # MONOLITH=127.0.0.1,8081,debug
     host, port, log_level = config("MONOLITH", cast=Csv())
     uvicorn.run(
         "server:app", host=host, port=int(port), log_level=log_level, reload=True

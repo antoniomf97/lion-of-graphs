@@ -32,10 +32,11 @@ def plotter_router() -> APIRouter:
     def plot_request(
         rawData: UploadFile = File(...),
         rawOptions: Json[Options] = Form(...),
+        rawFunc: str = Form()
     ):
         try:
             data = read_csv(rawData.file, sep=",", index_col=0)
-            plot_img = service(data, rawOptions)
+            plot_img = service(data, rawOptions, rawFunc)
         except (InvalidRequestError, ValueError) as e:
             raise HTTPException(status_code=400, detail="Bad request: " + str(e))
         except Exception as e:
