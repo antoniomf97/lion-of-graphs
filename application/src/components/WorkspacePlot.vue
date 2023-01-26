@@ -51,6 +51,13 @@ export default defineComponent({
                     showPoints: true,
                     showLines: true
                 }],
+                fitPlots: [{
+                    index: "y1",
+                    label: "Set 3",
+                    linesColor: "#6600FF",
+                    showPoints: false,
+                    showLines: true
+                }],
                 figure: {
                     title: {
                         label: "This is the title",

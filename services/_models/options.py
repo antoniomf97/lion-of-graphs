@@ -11,8 +11,17 @@ class Title(BaseModel):
 class Plot(BaseModel):
     index: str
     label: str
-    showPoints: bool
     showLines: bool
+    showPoints: bool
+    linesColor: Optional[str]
+    pointsColor: Optional[str]
+
+
+class FitPlot(BaseModel):
+    index: str
+    label: str
+    showLines: bool
+    showPoints: Optional[bool] = False
     linesColor: Optional[str]
     pointsColor: Optional[str]
 
@@ -27,3 +36,4 @@ class Figure(BaseModel):
 class Options(BaseModel):
     figure: Figure
     plots: List[Plot]
+    fitPlots: List[FitPlot]

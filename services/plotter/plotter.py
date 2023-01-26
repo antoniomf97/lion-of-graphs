@@ -7,16 +7,18 @@ from matplotlib.pyplot import figure
 from matplotlib.figure import Figure
 from matplotlib.axes import Axes
 
-from .._models.options import Options, Plot, Figure
+from .._models.options import Options, Plot, FitPlot, Figure
 
 
-def build_plot(data: DataFrame, options: Options, func: str):
+def build_plot(data: DataFrame, options: Options, func: str, fit_data: DataFrame = None):
     uid = uuid4()
     fig: Figure = figure(uid)
     axes: Axes = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 
     set_func(axes, func)
     set_plots(axes, data, options.plots)
+    if fit_data is not None:
+        set_plots(axes, fit_data, options.fitPlots)
     set_configurations(axes, options.figure)
 
     buf = BytesIO()
@@ -36,7 +38,7 @@ def set_func(axes: Axes, func: str):
     axes.plot(x, y, color="red")
 
 
-def set_plots(axes: Axes, data: DataFrame, plots: Plot) -> None:
+def set_plots(axes: Axes, data: DataFrame, plots: Plot or FitPlot) -> None:
     xdata = data.index.values
 
     for plot in plots:
