@@ -36,21 +36,43 @@ export default defineComponent({
             formData.append('rawData', this.file);
         
             const options = JSON.stringify({
-                color: "#0000FF",
-                title: {
-                    label: "This is the title",
-                    color: "#666666",
-                    fontsize: 24
+                plots: [{
+                    index: "y1",
+                    label: "Set 1",
+                    linesColor: "#0000FF",
+                    showPoints: false,
+                    showLines: true
                 },
-                xlabel: 'X Label',
-                ylabel: 'Y Label'
+                {
+                    index: "y2",
+                    label: "Set 2",
+                    linesColor: "#00FF00",
+                    pointsColor: "#FF3300",
+                    showPoints: true,
+                    showLines: true
+                }],
+                fitPlots: [{
+                    index: "y1",
+                    label: "Set 3",
+                    linesColor: "#6600FF",
+                    showPoints: false,
+                    showLines: true
+                }],
+                figure: {
+                    title: {
+                        label: "This is the title",
+                        color: "#666666",
+                        fontsize: 24
+                    },
+                    xlabel: 'X Label',
+                    ylabel: 'Y Label',
+                    grid: true
+                }
             });
             formData.append('rawOptions', options);
 
-            if(service == "fitter") {
-                const func = "$f(x) = x^2$";
-                formData.append('rawFunc', func);
-            }
+            const func = "$f(x) = x^2$";
+            formData.append('rawFunc', func);
 
             const baseUrl = "http://localhost:8081/";
             axios.post(baseUrl + service,
@@ -70,6 +92,7 @@ export default defineComponent({
     }
 })
 </script>
+
 
 <style>
 .workspace-plot-div {

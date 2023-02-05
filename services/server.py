@@ -8,9 +8,6 @@ from services.plotter.server import plotter_router
 from services.fitter.server import fitter_router
 
 
-# from services.example_service.server import example_router
-
-
 def app():
     app = FastAPI()
 
@@ -33,8 +30,6 @@ def app():
 
 
 if __name__ == "__main__":
-    # .env file example:
-    # MONOLITH=127.0.0.1,8081,debug
     host, port, log_level = config("MONOLITH", cast=Csv())
     uvicorn.run(
         "server:app", host=host, port=int(port), log_level=log_level, reload=True

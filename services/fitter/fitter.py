@@ -17,7 +17,7 @@ def fitter(data: DataFrame) -> tuple:
 
     fit_y = LinearRegression(x, parameters_q[0], parameters_q[1])
 
-    return DataFrame(fit_y, index=x)
+    return DataFrame(fit_y, index=x, columns=["y1"])
 
 
 def LinearRegression(x: float, m: float, c: float) -> float:

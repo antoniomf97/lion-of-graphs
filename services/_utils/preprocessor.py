@@ -17,3 +17,7 @@ def validate_dataframe(dataframe: DataFrame) -> DataFrame:
         raise InvalidRequestError("found duplicated entry in provided data")
 
     return dataframe
+
+
+def validate_latex(function: str) -> str:
+    return function
