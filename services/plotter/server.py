@@ -32,7 +32,7 @@ def plotter_router() -> APIRouter:
     def plot_request(
         rawData: UploadFile = File(...),
         rawOptions: Json[Options] = Form(...),
-        rawFunc: str = Form()
+        rawFunc: str = Form(),
     ):
         try:
             data = read_csv(rawData.file, sep=",", index_col=0)

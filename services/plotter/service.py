@@ -14,7 +14,7 @@ def service(data: DataFrame, options: Options, func: str) -> bytes:
 
     logger.debug("Validating provided function.")
     func = validate_latex(func)
-    
+
     # TODO: validate latex function
     # TODO: convert latex to lambda code
 

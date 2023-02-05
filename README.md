@@ -19,9 +19,8 @@
   <li><a href="#description">Description</a></li>
   <li><a href="#contributing">Structure</a></li>
   <li><a href="#contributing">Contributing</a></li>
-  <li><a href="#policies">Policies</a></li>
-  <li><a href="#license">License</a></li>
   <li><a href="#authors">Authors</a></li>
+  <li><a href="#license">License</a></li>
   <li><a href="#acknowledgments">Acknowledgments</a></li>
 </ol>
 

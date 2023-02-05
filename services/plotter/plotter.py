@@ -10,7 +10,9 @@ from matplotlib.axes import Axes
 from .._models.options import Options, Plot, FitPlot, Figure
 
 
-def build_plot(data: DataFrame, options: Options, func: str, fit_data: DataFrame = None):
+def build_plot(
+    data: DataFrame, options: Options, func: str, fit_data: DataFrame = None
+):
     uid = uuid4()
     fig: Figure = figure(uid)
     axes: Axes = fig.add_axes([0.1, 0.1, 0.8, 0.8])
@@ -28,7 +30,7 @@ def build_plot(data: DataFrame, options: Options, func: str, fit_data: DataFrame
 
 
 def quadratic(x):
-    return -(x - 4)**2 + 50
+    return -((x - 4) ** 2) + 50
 
 
 def set_func(axes: Axes, func: str):

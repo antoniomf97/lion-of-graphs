@@ -21,4 +21,3 @@ def validate_dataframe(dataframe: DataFrame) -> DataFrame:
 
 def validate_latex(function: str) -> str:
     return function
-
