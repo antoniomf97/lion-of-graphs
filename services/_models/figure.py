@@ -1,5 +1,6 @@
 from pydantic import BaseModel
-from typing import Optional, Literal, Any
+from typing import Optional, Literal, Any, Callable
+
 from matplotlib import rcParams
 from matplotlib.pyplot import Figure
 from matplotlib.patches import Patch
@@ -18,7 +19,7 @@ Config      https://docs.pydantic.dev/usage/model_config/
 
 
 class KwargsFigureModel(BaseModel):
-    # agg_filter: Optional[callable]
+    agg_filter: Optional[Callable]
     alpha: Optional[float]
     animated: Optional[bool]
     canvas: Optional[Any]
@@ -84,4 +85,3 @@ class FigureModel(BaseModel):
 
     class Config:
         arbitrary_types_allowed = True
-
