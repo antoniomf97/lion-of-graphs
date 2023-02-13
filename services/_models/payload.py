@@ -2,19 +2,11 @@ from pydantic import BaseModel, ValidationError, root_validator
 from typing import List, Optional
 
 from image import Image
-
-
-class Data(BaseModel):
-    pass
-
-
-class Function(BaseModel):
-    pass
+from data import Data
 
 
 class Payload(BaseModel):
     data_list: Optional[List[Data]] = None
-    function_list: Optional[List[Function]] = None
     image_options: Image
 
     @root_validator
@@ -27,8 +19,6 @@ class Payload(BaseModel):
 if __name__ == "__main__":
     payload_1 = {"data_list": [{"data": "data"}], "image_options": {"image": "image"}}
     payload_2 = {"function_list": [{"function": "function"}], "image_options": {"image": "image"}}
-    payload_3 = {"image_options": {"image": "image"}}
-    payload_4 = {"data_list": [{"data": "data"}]}
 
     p1 = Payload(**payload_1)
     print(p1)
