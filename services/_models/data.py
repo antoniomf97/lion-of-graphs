@@ -1,13 +1,19 @@
 from pydantic import BaseModel
+from typing import List
 
 
 class Data(BaseModel):
-    pass
+    plotID: int = 0
+    graphID: int = 0
+    limits: tuple = None
 
 
 class File(Data):
-    pass
+    filename: str
+    axis: List[str] = ['y']
+    column_names: dict = {'y': 'y'}
 
 
 class Function(Data):
-    pass
+    function: str
+    resolution: int = 100
