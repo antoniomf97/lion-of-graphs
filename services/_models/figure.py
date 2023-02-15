@@ -42,7 +42,7 @@ class KwargsFigureModel(BaseModel):
     linewidth: Optional[float]
     mouseover: Optional[bool]
     path_effects: Optional[AbstractPathEffect]
-    picker: Optional[bool | float | None]  # | callable
+    picker: Optional[bool | float | Callable | None]
     rasterized: Optional[bool]
     size_inches: Optional[float | tuple[float, float]]
     sketch_params: Optional[tuple[float, float, float]]

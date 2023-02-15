@@ -1,24 +1,21 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
-from figure import Figure
-from layout import Layout
+from figure import FigureModel
+from layout import LayoutModel
+from plot import PlotModel
 
 
-class Graph(BaseModel):
+class GraphModel(BaseModel):
     graphID: int = 0
     plots_list: List[int] = [0]
 
 
-class Plot(BaseModel):
-    plotID: int = 0
-
-
-class Image(BaseModel):
-    figure: Figure = Figure()
-    layout: Layout = Layout()
-    graphs: List[Graph] = [Graph()]
-    plots: Optional[List[Plot]] = [Plot()]
+class ImageModel(BaseModel):
+    figure: FigureModel = FigureModel()
+    layout: LayoutModel = LayoutModel()
+    graphs: List[GraphModel] = [GraphModel()]
+    plots: Optional[List[PlotModel]] = [PlotModel()]
 
     class Config:
         arbitrary_types_allowed = True
