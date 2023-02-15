@@ -1,13 +1,9 @@
 from pydantic import BaseModel
-from typing import Optional, Literal, Any, Callable
+from typing import Optional, Literal
 
-from matplotlib import rcParams
-from matplotlib.pyplot import Figure
-from matplotlib.patches import Patch
-from matplotlib.path import Path
-from matplotlib.transforms import Bbox, Transform
-from matplotlib.patheffects import AbstractPathEffect
 from matplotlib.layout_engine import LayoutEngine
+
+from kwargs import KwargsFigureModel
 
 
 """
@@ -18,47 +14,7 @@ Config      https://docs.pydantic.dev/usage/model_config/
 """
 
 
-class KwargsFigureModel(BaseModel):
-    agg_filter: Optional[Callable]
-    alpha: Optional[float]
-    animated: Optional[bool]
-    canvas: Optional[Any]
-    clip_box: Optional[Bbox]
-    clip_on: Optional[bool]
-    clip_path: Optional[Patch | tuple[Path, Transform]]
-    constrained_layout: Optional[bool]
-    constrained_layout_pads: Optional[Any]
-    dps: Optional[float]
-    edgecolor: Optional[str]
-    facecolor: Optional[str]
-    figheight: Optional[float]
-    figure: Optional[Figure]
-    figwidth: Optional[float]
-    frameon: Optional[bool]
-    gid: Optional[str]
-    in_layout: Optional[bool]
-    label: Optional[object]
-    layout_engine: Optional[LayoutEngine]
-    linewidth: Optional[float]
-    mouseover: Optional[bool]
-    path_effects: Optional[AbstractPathEffect]
-    picker: Optional[bool | float | Callable | None]
-    rasterized: Optional[bool]
-    size_inches: Optional[float | tuple[float, float]]
-    sketch_params: Optional[tuple[float, float, float]]
-    snap: Optional[bool | None]
-    tight_layout: Optional[bool]
-    transform: Optional[Transform]
-    url: Optional[str]
-    visible: Optional[bool]
-    zorder: Optional[float]
-
-    class Config:
-        arbitrary_types_allowed = True
-
-
 class SubplotParamsModel(BaseModel):
-    # left: float = rcParams["figure.subplot.left"]
     left: float = 0.125
     right: float = 0.9
     bottom: float = 0.11
@@ -68,19 +24,18 @@ class SubplotParamsModel(BaseModel):
 
 
 class FigureModel(BaseModel):
-    """
-    Defines the base figure configurations
-    """
     figsize: tuple[float] = (6.4, 4.8)
     dpi: float = 100.0
-    facecolor: str = 'white'
-    edgecolor: str = 'white'
+    facecolor: str = "white"
+    edgecolor: str = "white"
     linewidth: float = 0.0
     frameon: bool = True
     subplotpars: SubplotParamsModel = SubplotParamsModel()
     tight_layout: bool | dict = False
     constrained_layout: bool = False
-    layout: Optional[Literal['constrained', 'compressed', 'tight'] | LayoutEngine | None]
+    layout: Optional[
+        Literal["constrained", "compressed", "tight"] | LayoutEngine | None
+    ]
     kwargs: Optional[KwargsFigureModel]
 
     class Config:

@@ -13,8 +13,8 @@ class DataModel(BaseModel):
 
 class FileModel(DataModel):
     filename: str
-    axis: List[str] = ['y']
-    column_names: dict = {'y': 'y'}
+    axis: List[str] = ["y"]
+    column_names: dict = {"y": "y"}
     dataframe: DataFrame = None
 
 
