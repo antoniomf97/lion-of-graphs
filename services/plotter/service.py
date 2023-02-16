@@ -1,5 +1,11 @@
 from pandas import DataFrame
 
+from io import BytesIO
+from uuid import uuid4
+from matplotlib.pyplot import figure
+from matplotlib.figure import Figure
+from matplotlib.axes import Axes
+
 from .._models.options import Options
 from .._utils.preprocessor import validate_dataframe, validate_latex
 from .._utils.log import logger

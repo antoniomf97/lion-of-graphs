@@ -1,4 +1,6 @@
 from matplotlib.axes import Axes
+from pandas import DataFrame
+from numpy import arrange
 
 from .._models.options import Options
 
