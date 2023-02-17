@@ -61,8 +61,3 @@ class ScatterPlotModel(BasicPlotModel):
     plotnonfinite: bool = False
     data: Optional[dict | DataFrame]
     kwargs: Optional[KwargsCollectionModel]
-
-
-if __name__ == "__main__":
-    payload = {"x": [1, 2, 3], "y": [4, 5, 6], "s": 1, "c": ["a", "b", "c"]}
-    print(ScatterPlotModel(**payload))
