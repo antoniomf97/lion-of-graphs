@@ -4,7 +4,7 @@ from scipy.optimize import curve_fit
 from pandas import DataFrame
 
 
-def fitter(data: DataFrame) -> tuple:
+def fitter(data: DataFrame) -> DataFrame:
     """Fitter engine"""
     xdata, ydata = np.asarray(data.index.values), np.asarray(data[data.keys()[0]])
 
