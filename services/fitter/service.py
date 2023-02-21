@@ -11,7 +11,7 @@ from pandas import DataFrame
 from .._models.options import Options
 from .._utils.log import logger
 from .._utils.preprocessor import validate_dataframe, validate_latex
-from .._utils.mpb_wrap import  set_func, set_plots, set_configurations
+from .._utils.wrapper import  set_func, set_plots, set_configurations
 
 
 def service(data: DataFrame, options: Options, func: str):

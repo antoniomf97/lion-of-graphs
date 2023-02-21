@@ -2,12 +2,12 @@ import uvicorn
 import matplotlib
 
 from pydantic import Json
-from pandas import read_csv
+from typing import Optional
 from decouple import config, Csv
 from fastapi import FastAPI, APIRouter, File, Form, UploadFile, HTTPException
 from fastapi.responses import Response
 
-from .._models.options import Options
+from .._models.payload import PayloadModel
 from .._utils.exceptions import InvalidRequestError
 
 from .service import service
@@ -30,13 +30,11 @@ def plotter_router() -> APIRouter:
         response_class=Response,
     )
     def plot_request(
-        rawData: UploadFile = File(...),
-        rawOptions: Json[Options] = Form(...),
-        rawFunc: str = Form(),
+        rawPayload: Json[PayloadModel] = Form(...),
+        rawData: UploadFile | None = None
     ):
         try:
-            data = read_csv(rawData.file, sep=",", index_col=0)
-            plot_img = service(data, rawOptions, rawFunc)
+            plot_img = service(rawData, rawPayload)
         except (InvalidRequestError, ValueError) as e:
             raise HTTPException(status_code=400, detail="Bad request: " + str(e))
         except Exception as e:

@@ -1,7 +1,7 @@
 import unittest
 import requests
 
-plotter_url = "http://localhost:8000"
+plotter_url = "http://localhost:8081"
 
 
 class TestStringMethods(unittest.TestCase):

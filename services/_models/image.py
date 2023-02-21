@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
-from figure import FigureModel
-from layout import LayoutModel
-from plot import PlotModel
+from _models.figure import FigureModel
+from _models.layout import LayoutModel
+from _models.plot import PlotModel
 
 
 class GraphModel(BaseModel):
