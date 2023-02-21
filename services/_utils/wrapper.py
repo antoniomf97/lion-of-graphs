@@ -1,8 +1,8 @@
 from matplotlib.axes import Axes
 from pandas import DataFrame
-from numpy import arrange
+from numpy import arange
 
-from .._models.options import Options
+from _models.options import Options
 
 
 def set_configurations(axes: Axes, configs: Options) -> None:

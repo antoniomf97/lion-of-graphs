@@ -1,6 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Optional
 
 
-class Layout(BaseModel):
+class LayoutModel(BaseModel):
     pass

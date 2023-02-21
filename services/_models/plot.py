@@ -5,7 +5,7 @@ from pandas import DataFrame
 from matplotlib.markers import MarkerStyle
 from matplotlib.colors import Colormap, Normalize
 
-from kwargs import KwargsLine2DModel, KwargsCollectionModel
+from _models.kwargs import KwargsLine2DModel, KwargsCollectionModel
 
 
 class PlotModel(BaseModel):

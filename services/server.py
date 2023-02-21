@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from decouple import config, Csv
 
 from services.plotter.server import plotter_router
-from services.fitter.server import fitter_router
+# from services.fitter.server import fitter_router
 
 
 def app():
@@ -24,7 +24,7 @@ def app():
     )
 
     app.include_router(plotter_router())
-    app.include_router(fitter_router())
+    # app.include_router(fitter_router())
 
     return app
 

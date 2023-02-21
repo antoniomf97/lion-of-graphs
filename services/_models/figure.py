@@ -3,7 +3,7 @@ from typing import Optional, Literal
 
 from matplotlib.layout_engine import LayoutEngine
 
-from kwargs import KwargsFigureModel
+from _models.kwargs import KwargsFigureModel
 
 
 """
